@@ -6,6 +6,8 @@ import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
+import '../../App.css'
+import ProfilePicChanger from '../profilepic/ProfilePicChanger';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -13,15 +15,19 @@ const Dashboard = ({
   auth: { user },
   profile: { profile }
 }) => {
+
+  
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
+
 
   return (
     <section className="container">
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Welcome {user && user.name}
+        <ProfilePicChanger margin={0}/>
+        <span id='user-profile-name'>{user && user.name}</span>
       </p>
       {profile !== null ? (
         <>
