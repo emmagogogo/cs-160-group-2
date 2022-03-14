@@ -582,3 +582,37 @@ button {
   right: 2rem;
   display: inline-block;
 }
+
+
+/*add profile image */ 
+#profile-img {
+  border: 3px solid black;
+  width: 10rem;
+  height: 10rem;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+#input[type='file']{
+  display: none;
+}
+.label {
+  width: 100%;
+  display: flex;
+}
+
+.image-upload {
+  background-color: #F4F4F4;
+  width: 150px;
+  margin-left: 25px;
+  height: 35px;
+  border-radius: 5%;
+  text-align: center;
+  cursor: pointer;
+  font-size: .75rem;
+}
+
+#user-profile-name{
+  display: inline-block;
+  padding: 25px 0 0 0;
+}

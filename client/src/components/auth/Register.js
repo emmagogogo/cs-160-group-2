@@ -35,7 +35,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     <section className="container">
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Create Your Account
+        <i className="fas fa-user" /> Make your Professional life easier
       </p>
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
