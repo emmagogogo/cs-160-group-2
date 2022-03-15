@@ -14,7 +14,7 @@ const Posts = ({ getPosts, post: { posts } }) => {
     <section className="container">
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">
-        <i className="fas fa-user" /> boost your network
+        <i className="fas fa-user" /> Boost your Network!
       </p>
       <PostForm />
       <div className="posts">
