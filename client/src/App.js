@@ -24,6 +24,7 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
+import messenger from './components/messenger/Messenger';
 
 const App = () => {
   useEffect(() => {
@@ -72,6 +73,10 @@ const App = () => {
           <Route
             path="add-education"
             element={<PrivateRoute component={AddEducation} />}
+          />
+          <Route
+            path="messenger"
+            element={<PrivateRoute component={messenger} />}
           />
           <Route path="posts" element={<PrivateRoute component={Posts} />} />
           <Route path="posts/:id" element={<PrivateRoute component={Post} />} />
