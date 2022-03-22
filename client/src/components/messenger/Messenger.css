@@ -59,6 +59,11 @@
     color: white;
 }
 
+.chat-submit-button:hover {
+    background-color: rgb(96, 209, 209);
+    color: black;
+}
+
 .chat-online {
     flex: 3;
 }
