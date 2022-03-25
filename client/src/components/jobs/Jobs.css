@@ -1,0 +1,20 @@
+.jobs-table {
+    margin-top: 5%;
+}
+
+.container {
+    width: 80%;
+    margin-left: 0;
+}
+
+.filter {
+    margin-left: 5%;
+    width: auto;
+    padding: 30px;
+    background-color: #1877f2;
+    border-radius: 15%;
+}
+
+.filterForm {
+    color: white;
+}

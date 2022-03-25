@@ -1,0 +1,75 @@
+.jobpost {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 20px;
+    width: 800px;
+    border: 1px solid #707070;
+    background-color: #E5E5E5;
+    color: white;
+}
+
+.jobpost-top {
+    display: flex;
+}
+
+.jobpost-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.jobpost-text {
+    padding: 10px;
+    text-align: center;
+    color: #909090;
+}
+
+.jobpost-bottom {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.jobpost.own {
+    align-items: flex-end;
+}
+
+.jobpost.own .jobpost-text {
+    background-color: rgb(245, 241, 241);
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
+
+.jobpost-btn {
+    margin: 0px;
+    margin: auto;
+    display: block;
+    border-radius: 20px;
+    padding: 5px;
+    width: 45%;
+}
+
+.jobpost-btn.apply {
+    border: 1px solid #707070;
+    background-color: #1877f2;
+    color: white;
+}
+
+.jobpost-btn.details {
+    border: 1px solid #1877f2;
+    background-color: white;
+    color: #1877f2;
+}
+
+.jobpost.light {
+    border: 1px solid #707070;
+    background-color: white;
+    color: white;
+}
