@@ -72,5 +72,5 @@ const jobSchema = new mongoose.Schema({
     {
         timestamps: true,
     });
-const jobModel = new mongoose.model('jobs', jobSechema);
-module.sxports = jobModel;
+const jobModel = new mongoose.model('job', jobSchema);
+module.exports = jobModel;
