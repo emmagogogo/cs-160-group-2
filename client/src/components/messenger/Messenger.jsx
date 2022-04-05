@@ -1,7 +1,6 @@
 import "./Messenger.css"
 import Conversation from '../conversations/Conversation';
 import Message from "../message/Message";
-import ChatOnline from "../chat-online/ChatOnline";
 
 
 const Messenger = () => {
@@ -43,9 +42,7 @@ const Messenger = () => {
             </div>
             <div className="chat-online">
                 <div className="chat-online-wrapper">
-                    <ChatOnline />
-                    <ChatOnline />
-                    <ChatOnline />
+                    
                 </div>
             </div>
         </section>
