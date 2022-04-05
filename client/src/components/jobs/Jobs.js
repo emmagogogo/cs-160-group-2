@@ -4,7 +4,8 @@ import Spinner from '../layout/Spinner';
 import {useSelector, useDispatch} from 'react-redux';
 import { getAllJobs } from '../../actions/job';
 import {Row, Col} from 'antd';
-import "./Jobs.css"
+import "./Jobs.css";
+//import 'antd/dist/antd.css';
 import JobPost from "../job-post/JobPost.jsx";
 
 
@@ -38,7 +39,7 @@ return(
                 <div>
                     <Row gutter={16}>
                         {jobs.map(job => {  
-                        return <Col lg={12} sm={24}>
+                        return <Col lg={12} sm= {24}>
                                     <div className='job-div'>
                                         <h4> Job Title : {job.title}</h4>
                                         <p> Company: {job.company}</p>
@@ -51,7 +52,7 @@ return(
                                             
                                         </div>
                                         <div>
-                                           <Link> <button type="button" class="btn btn-primary">View</button></Link>
+                                          <button type="link" class="btn btn-primary">View</button>   
                                         </div>
                                         
                                         <hr/>
