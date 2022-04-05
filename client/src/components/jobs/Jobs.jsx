@@ -21,7 +21,7 @@ const Jobs = () => {
                         </form>
                     </div>
                 </td>
-                <td className="container">
+                <td className="job-page-container">
                     <JobPost />
                     <JobPost light={true} />
                     <JobPost />
