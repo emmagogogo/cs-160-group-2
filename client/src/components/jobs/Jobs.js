@@ -52,7 +52,7 @@ return(
                                             
                                         </div>
                                         <div>
-                                          <button type="link" class="btn btn-primary">View</button>   
+                                          <button type="link" className="btn btn-primary">View</button>   
                                         </div>
                                         
                                         <hr/>
