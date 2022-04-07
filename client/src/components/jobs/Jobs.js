@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import { getAllJobs } from '../../actions/job';
 import {Row, Col} from 'antd';
 import "./Jobs.css";
+import { Link } from 'react-router-dom';
 //import 'antd/dist/antd.css';
 import JobPost from "../job-post/JobPost.jsx";
 
@@ -52,7 +53,7 @@ return(
                                             
                                         </div>
                                         <div>
-                                          <button type="link" className="btn btn-primary">View</button>   
+                                          <Link to={`/jobs/${job._id}`}> <button type="link" class="btn btn-primary">View</button> </Link>    
                                         </div>
                                         
                                         <hr/>
