@@ -20,7 +20,9 @@ function Jobs(){
 
 return(
     <section>
-        <table className="jobs-table">
+        {/* <table className="jobs-table">
+            <tbody>
+            <tr>
                  <td>
                      <div className="filter">
                          <p className="filterForm">Filters</p>
@@ -37,7 +39,10 @@ return(
                          </form>
                      </div>
                  </td>
-                <div>
+                 </tr>
+                 </tbody>
+                 </table> */}
+                <div className='job'>
                     <Row gutter={16}>
                         {jobs.map(job => {  
                         return <Col key={job._id} lg={12} sm= {24}>
@@ -53,7 +58,7 @@ return(
                                             
                                         </div>
                                         <div>
-                                          <Link to={`/jobs/${job._id}`}> <button type="link" class="btn btn-primary">View</button> </Link>    
+                                          <Link to={`/jobs/${job._id}`}> <button type="link" className="btn btn-primary">View</button> </Link>    
                                         </div>
                                         
                                         <hr/>
@@ -64,7 +69,7 @@ return(
                         })}
                     </Row>
                 </div>
-        </table>
+        
     </section>
 );
 }
