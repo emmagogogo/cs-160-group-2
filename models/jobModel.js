@@ -62,9 +62,8 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    appliedCndidates : {
+    applications : {
         type : [],
-        required: true
     },
     postedBy : {
         type: Schema.Types.ObjectId,
