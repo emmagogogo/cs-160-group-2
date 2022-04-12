@@ -1,153 +1,135 @@
-import React, {useState}from 'react';
-import {Row, Col, Form, Tabs, Input, Button, Select} from 'antd';
-import {useDispatch} from 'react-redux';
-//import {updateUser} from '.actions/userActions';
-//import 'antd/dist/antd.css';
-const{TextArea} = Input;
-const{Tabpane} = Tabs;
-const{Option} = Select;
 
-function PostJob(){
+   
+import React, {Fragment, useState} from 'react';
+//import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { postJob } from '../../actions/profile';
 
-    const [jobInfo, setJobInfo] = useState({});
-    const [activeTab, setActiveTab] = useState('0');
 
-    function onFirstFormFinish(values){
-        setJobInfo(values);
-        setActiveTab('1');
-    }
+const PostJob = ({ postJob, navigate }) => {
+    const [formData, setFormData] = useState({
+        title: '',
+        department: '',
+        location: '',
+        jobType: '',
+        experience: '',
+        salaryFrom: '',
+        salaryTo: '',
+        skillsRequired: '',
+        company: '',
+        email: '',
+        phoneNumber: '',
+        minimumQualification: '',
+        companyDescription: ''
+    });
 
-    function onFinalFormFinish(values){
-        const finalObj = {...jobInfo, ...values};
-        console.log(finalObj);
+    const {
+        title,
+        department,
+        location,
+        jobType,
+        experience,
+        salaryFrom,
+        salaryTo,
+        skillsRequired,
+        company,
+        email,
+        phoneNumber,
+        minimumQualification,
+        companyDescription
+    } = formData;
+
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value});
+    const onSubmit = e => {
+        e.preventDefault();
+        postJob(formData, navigate);
     }
 
     return (
-        <section>
-             <table className="jobs-table">
-        <div>
-            <h1>Allow Recruiter to post job here</h1>
-            {/* <Tabs defaultActiveKey='0' accessKey={activeTab}>
-                <Tabpane tab='Job Info' key='0'> */}
-                    <Form layout='vertical' onFinish={onFirstFormFinish}>
-                        <Row gutter={16}>
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='title' rules={[{required: true}]} label = 'Title'>
-                                <Input/>
-                                </Form.Item>
-                            </Col>
-
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='department' rules={[{required: true}]} label = 'Department'>
-                                <Input/>
-                                </Form.Item>
-                            </Col>
-
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='location' rules={[{required: true}]} label = 'Location'>
-                                <Input/>
-                                </Form.Item>
-                            </Col>
-
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='jobType' rules={[{required: true}]} label = 'Job Type'>
-                                <Input/>
-                                </Form.Item>
-                            </Col>
-
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='experience' rules={[{required: true}]} label = 'Experience'>
-                                <Input/>
-                                </Form.Item>
-                            </Col>
-                           
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='salaryFrom' rules={[{required: true}]} label = 'Salary From'>
-                                <Input type='number'/>
-                                </Form.Item>
-                            </Col>
-
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='salaryTo' rules={[{required: true}]} label = 'Salary To'>
-                                <Input type='number'/>
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                             
-
-                        <Row gutter={16}>
-                            <Col lg={8} sm={24}>
-                                    <Form.Item name='skillsRequired' rules={[{required: true}]} label = 'Skills'>
-                                    <Input/>
-                                    </Form.Item>
-                                </Col>
-
-                                <Col lg={8} sm={24}>
-                                    <Form.Item name='minimumQualification' rules={[{required: true}]} label = 'Minimum Qualification'>
-                                        <Select>
-                                            <Option value='Associate'>Associate Degree </Option>
-                                            <Option value='Bachelor'>Bachelor Degree </Option>
-                                            <Option value='Master'>Master Degree </Option>
-                                        </Select>
-                                    </Form.Item>
-                                </Col>
-
-                                <Col lg={24} sm={24}>
-                                    <Form.Item name='smallDesciption' rules={[{required: true}]} label = 'Brief Description'>
-                                    <TextArea rows={3}/>
-                                    </Form.Item>
-                                </Col>
-
-                                <Col lg={24} sm={24}>
-                                    <Form.Item name='fullDesciption' rules={[{required: true}]} label = 'Full Description'>
-                                    <TextArea rows={6}/>
-                                    </Form.Item>
-                                </Col>
-                        </Row>
-                        <Button htmlType='submit'>Next</Button>
-                    </Form>
-
-
-
-                {/* </Tabpane> */}
-                {/* <Tabpane tab='Company Info' key='1'> */}
-                    <Form layout='vertical' onFinish = {onFinalFormFinish}>
-                        <Row gutter={16}>
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='company' rules={[{required: true}]} label = 'Company Name'>
-                                <Input/>
-                                </Form.Item>
-                            </Col>
-
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='email' rules={[{required: true}]} label = 'Email'>
-                                <Input/>
-                                </Form.Item>
-                            </Col>
-                            <Col lg={8} sm={24}>
-                                <Form.Item name='phoneNumber' rules={[{required: true}]} label = 'Phone Number'>
-                                <Input/>
-                                </Form.Item>
-                            </Col>
-
-                            <Col lg={24} sm={24}>
-                                    <Form.Item name='companyDesciption' rules={[{required: true}]} label = 'Company Description'>
-                                    <TextArea rows={6}/>
-                                    </Form.Item>
-                                </Col>
-                            
-                        </Row>
-                        <Button onClick={()=> {setActiveTab('0')}}>Previous</Button>
-                        <Button>Submit</Button>
-                    </Form>
-                {/* </Tabpane>
-
-            </Tabs> */}
+        <Fragment>
+            <h1 className="large text-primary">
+        Allow Recruiter to post job here
+      </h1>
+      <p className="lead">
+        <i className="fas fa-user"></i> Please enter your job details
+      </p>
+      <form className="form" onSubmit={e => onSubmit(e)}>
+        <div className="form-group">
+            <small className="form-text">Please enter the title of the job</small>
+          <input type="text" placeholder="Title" name="title" value={title} onChange={e => onChange(e)}/>
+          
         </div>
-        </table>
-        </section>
-      );
-
+        <div className="form-group">
+            <small className="form-text">Please enter the name of the department</small>
+          <input type="text" placeholder="Department" name="department" value={department} onChange={e => onChange(e)}/>
+          
+        </div>
+        <div className="form-group">
+            <small className="form-text">Please enter City & state suggested (eg. Boston, MA)</small>
+          <input type="text" placeholder="Location" name="location" value={location} onChange={e => onChange(e)}/>
+          
+        </div>
+        <div className="form-group">
+        <small className="form-text">Please enter the job type</small>
+          <input type="text" placeholder="Job Type" name="jobType" value={jobType} onChange={e => onChange(e)}/>
+          
+        </div>
+        <div className="form-group">
+            <small className="form-text">Please enter the experience</small>
+          <input type="text" placeholder="Experience" name="experience" value={experience} onChange={e => onChange(e)}/>
+          
+        </div>
+        <div className="form-group">
+            <small className="form-text">Please enter the salary starting from</small>
+          <input type="text" placeholder="Salary From" name="salaryFrom" value={salaryFrom} onChange={e => onChange(e)}/>
+          
+        </div>
+        <div className="form-group">
+          <small className="form-text">Please enter the salary to</small>
+          <input type="text" placeholder="Salary To" name="salaryTo" value={salaryTo} onChange={e => onChange(e)}/>
+          
+        </div>
+        <div className="form-group">
+            <small className="form-text">Please use comma separated values (eg.HTML,CSS,JavaScript,PHP)</small>
+          <input type="text" placeholder="Skills" name="skillsRequired" value={skillsRequired} onChange={e => onChange(e)}/>
+        </div>
+        <div className="form-group">
+          <select name="minimumQualification" value={minimumQualification} onChange={e => onChange(e)}>
+            <option value="0">* Select Minimum Qualification</option>
+            <option value="Developer">Associate Degree</option>
+            <option value="Junior Developer">Bachelor Degree</option>
+            <option value="Senior Developer">Master Degree</option>
+          </select>
+        </div>
+        <div className="form-group">
+            <small className="form-text">Please enter the company name</small>
+          <input type="text" placeholder="Company Name" name="company" value={company} onChange={e => onChange(e)}/>
+          
+        </div>
+        <div className="form-group">
+            <small className="form-text">Please enter your email</small>
+          <input type="text" placeholder="Email" name="email" value={email} onChange={e => onChange(e)}/>
+          
+        </div>
+        <div className="form-group">
+            <small className="form-text">Please enter your phone number</small>
+          <input type="text" placeholder="Phone Number" name="phoneNumber" value={phoneNumber} onChange={e => onChange(e)}/>
+        </div>
+        <div classNameName="form-group">
+            <small classNameName="form-text">Please enter your compnay's description</small>
+          <input type="text" placeholder="Company description" name="companyDescription" value={companyDescription} onChange={e => onChange(e)}/>
+        </div>
+        <input type="submit" className="btn btn-primary my-1" />
+        <a classNameName="btn btn-light my-1" href="dashboard.html">Go Back</a>
+      </form>
+        </Fragment>
+    )
 }
-    
-export default PostJob;
+
+PostJob.propTypes = {
+    postJob: PropTypes.func.isRequired
+};
+
+
+export default PostJob
