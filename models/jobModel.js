@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 const jobSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -65,7 +67,7 @@ const jobSchema = new mongoose.Schema({
         required: true
     },
     postedBy : {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     },
    },
