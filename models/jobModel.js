@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const jobSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+const jobSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -24,7 +25,7 @@ const jobSchema = new mongoose.Schema({
         type: Number,
         reequired: true
     },
-    experience : {
+    experience: {
         type: String,
         required: true
     },
@@ -32,7 +33,7 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fullDescription :{
+    fullDescription:{
         type: String,
         required: true
     },
@@ -40,19 +41,19 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    skillRequired : {
+    skillRequired: {
         type: String,
         required: true
     },
-    company : {
+    company: {
         type: String,
         required: true
     },
-    email : {
+    email: {
         type: String,
         required: true
     },
-    phoneNumber : {
+    phoneNumber: {
         type: String,
         required: true
     },
@@ -62,10 +63,10 @@ const jobSchema = new mongoose.Schema({
     },
     appliedCndidates : {
         type : [],
-        required: true
+        //required: true
     },
     postedBy : {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     },
    },

@@ -60,9 +60,9 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       </h1>
       <div id='search-bar'>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-          <form class="example" action="/jobs">
+          <form className="example" action="/jobs">
             <input type="text" placeholder="Enter a job title" name="search" />
-            <button type="submit"><i class="fa fa-search"></i></button>
+            <button type="submit"><i className="fa fa-search"></i></button>
           </form>
         </div>
       <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
