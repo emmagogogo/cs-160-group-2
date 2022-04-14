@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import "./Jobs.css";
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 

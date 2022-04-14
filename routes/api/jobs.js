@@ -24,10 +24,11 @@ router.post("/postjob", auth, async(req, res) => {
         const newJob = new Job(req.body);
         // const user = await User.findById(req.user.id).select('-password');
 
-        newJob.postedBy = req.user.id;
+      newJob.postedBy = req.user.id;
         await newJob.save();
         res.send('Job Posted successfully');
     } catch (error) {
+        console.log(error);
         return res.status(400).json({ error});
     }
 
