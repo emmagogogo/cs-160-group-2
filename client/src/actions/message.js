@@ -11,10 +11,11 @@ export const getMessages = () => async (dispatch) => {
         payload: res.data
       });
     } catch (err) {
-      dispatch({
-        type: MESSAGE_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
-      });
+      //dispatch({
+        //type: MESSAGE_ERROR,
+        //payload: { msg: err.response.statusText, status: err.response.status }
+      //});
+      console.log(err);     
     }
 };
 
