@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
-import PropTypes from 'prop-types';
-import Spinner from '../layout/Spinner';
+//import PropTypes from 'prop-types';
+//import Spinner from '../layout/Spinner';
 import {useSelector, useDispatch} from 'react-redux';
 import { getAllJobs } from '../../actions/job';
 import {Row, Col} from 'antd';
 import "./Jobs.css";
 import { Link } from 'react-router-dom';
 //import 'antd/dist/antd.css';
-import JobPost from "../job-post/JobPost.jsx";
+//import JobPost from "../job-post/JobPost.jsx";
 
 
 function Jobs(){
@@ -45,7 +45,7 @@ return(
                 <div className='job'>
                     <Row gutter={16}>
                         {jobs.map(job => {  
-                        return <Col key={job._id} lg={12} sm= {24}>
+                        return <Col key={job._id} lg={24} sm= {24}>
                                     <div className='job-div'>
                                         <h4> Job Title : {job.title}</h4>
                                         <p> Company: {job.company}</p>
