@@ -26,4 +26,7 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const GET_CONVERSATIONS = 'GET_CONVERSATIONS';
 export const MESSAGE_ERROR = 'MESSAGE_ERROR';
+export const GET_ALL_JOBS = 'GET_ALL_JOBS';
+export const JOBS_ERROR = 'JOBS_ERROR';
+
 

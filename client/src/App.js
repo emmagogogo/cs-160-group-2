@@ -13,6 +13,11 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
+import Jobs from './components/jobs/Jobs.js'
+import JobDetails from './components/jobs/jobDetails';
+//import Jobs from './components/jobs/Jobs.jsx'
+import PostJob from './components/job-post/PostJob.js'
+
 import NotFound from './components/layout/NotFound';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { LOGOUT } from './actions/types';
@@ -25,6 +30,8 @@ import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 import messenger from './components/messenger/Messenger';
+import { getAllJobs } from './actions/job';
+
 
 const App = () => {
   useEffect(() => {
@@ -36,12 +43,20 @@ const App = () => {
     // try to fetch a user, if no token or invalid token we
     // will get a 401 response from our API
     store.dispatch(loadUser());
+    store.dispatch(getAllJobs());
 
     // log user out from all tabs if they log out in one tab
     window.addEventListener('storage', () => {
       if (!localStorage.token) store.dispatch({ type: LOGOUT });
     });
+    
+    
+
   }, []);
+
+
+  
+
 
   return (
     <Provider store={store}>
@@ -80,7 +95,10 @@ const App = () => {
           />
           <Route path="posts" element={<PrivateRoute component={Posts} />} />
           <Route path="posts/:id" element={<PrivateRoute component={Post} />} />
+          <Route path="jobs" element={<Jobs />} />
+          <Route path="postjob" element={<PostJob />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="jobs/:id" element={<JobDetails />} />
         </Routes>
       </Router>
     </Provider>
