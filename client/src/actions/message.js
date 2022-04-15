@@ -1,10 +1,10 @@
 import api from '../utils/api';
-import { GET_MESSAGES, MESSAGE_ERROR } from './types';
+import { GET_MESSAGES } from './types';
 
 // Get messages
 export const getMessages = () => async (dispatch) => {
     try {
-      const res = await api.get('/messages/getMessages');
+      const res = await api.get('/messages/');
   
       dispatch({
         type: GET_MESSAGES,
@@ -27,7 +27,7 @@ export const postMessages=(values) => async (dispatch) =>{
     //console.log("!!@!@ " + localStorage.getItem('profile'));
     dispatch({type: 'LOADING', payload: true})
     try {
-       const res = await api.post('/messages/postMessages', values);
+       const res = await api.post('/messages/', values);
      
        message.success('Message posted successfully');
 

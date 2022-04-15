@@ -29,6 +29,24 @@ route.get("/:getId", async (req, res)=>{
     }
 });
 
+// @route    GET api/conversations/:id
+// @desc     Get conversation by ID
+// @access   Private
+router.get('/:id', auth, checkObjectId('id'), async (req, res) => {
+    try {
+      const conversation = await conversation.findById(req.params.id);
+  
+      if (!job) {
+        return conversation.status(404).json({ msg: 'conversation not found' });
+      }
+  
+      res.json(conversation);
+    } catch (err) {
+      console.error(err.message);
+  
+      res.status(500).send('Server Error');
+    }
+  });
 
 
 module.exports = router;
