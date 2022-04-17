@@ -1,5 +1,18 @@
+.jobs-page-container {
+    display: flex;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2rem;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+}
+
 .jobs-table {
     margin-top: 5%;
+}
+
+.job-filters {
+    flex: 2;
 }
 
 .container {
@@ -28,14 +41,40 @@
 .btn-primary{
     background-color: #4293f5;
 }
-.job-div{
+/*.job-div{
     margin-left:18%;
-}
+}*/
 .job{
-    margin-top: 6%;
+    flex: 8;
+    /*margin-top: 6%;
     margin-left: 5%;
-    margin-right: 5%;
+    margin-right: 5%;*/
 }
 .p-style{
     margin-top:1%;
+}
+
+
+/*//////////////////////////////////*/
+.job-filters {
+    padding: 30px 0 0 10px;
+}
+
+.block-element{
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+.block-header{
+    display: block;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.inline-element {
+    flex: 1;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
 }

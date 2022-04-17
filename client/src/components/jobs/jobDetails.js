@@ -13,7 +13,7 @@ function JobDetails(){
      const job = jobs.find(job=>job._id === id);
    
          return(
-                <div className="job">
+                <div className="container">
                     {job && (<div key={job.id}> 
                         <p className="p-style"> <b>Job Title:</b> {job.title} </p>
                         <p className="p-style"> <b>Company:</b> {job.company} </p>
