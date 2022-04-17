@@ -3,6 +3,7 @@ import "./Jobs.css";
 import { useSelector} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 
 function JobDetails(){
@@ -33,6 +34,9 @@ function JobDetails(){
                     
 
                     <div className="p-style"> </div>
+
+                    <button className="btn btn-back"><Link to="/jobs">Back</Link></button>
+
                     <button className="btn btn-primary">Apply Now</button>
                     <p className="p-style"><b>Posted on: </b> {moment(job.createdAt).format('MMM DD, yyyy')}</p>
                     <hr className="p-style"/>
