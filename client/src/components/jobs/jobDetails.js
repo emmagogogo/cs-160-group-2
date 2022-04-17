@@ -13,7 +13,7 @@ function JobDetails(){
 
      const job = jobs.find(job=>job._id === id);
 
-     function myFunction() {
+     function PopUp() {
         var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
     }
@@ -42,7 +42,7 @@ function JobDetails(){
 
                     <button className="btn btn-back"><Link to="/jobs">Back</Link></button>
 
-                    <button className="btn btn-primary popup" onClick={myFunction}>Apply Now <span className="popuptext" id="myPopup"> Applied </span> </button>
+                    <button className="btn btn-primary popup" onClick={PopUp}>Apply Now <span className="popuptext" id="myPopup"> Applied </span> </button>
                     
                     <p className="p-style"><b>Posted on: </b> {moment(job.createdAt).format('MMM DD, yyyy')}</p>
                     <hr className="p-style"/>
