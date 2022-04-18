@@ -22,7 +22,7 @@ export const getAllJobs=() => async(dispatch)=>{
 export const applyToJob=(id) => async(dispatch)=>{
     dispatch({ type: 'LOADING', payload: true});
     try {
-        const res = await api.get(`/jobs/${id}/apply`);
+        const res = await api.post(`/jobs/${id}/apply`);
         console.log(res);
     } catch (err) {
         
