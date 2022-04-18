@@ -3,6 +3,7 @@ import "./Jobs.css";
 import { useSelector} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 
 function JobDetails(){
@@ -11,7 +12,12 @@ function JobDetails(){
     const{jobs} = useSelector(state=>state.job);
 
      const job = jobs.find(job=>job._id === id);
-   
+
+     function PopUp() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+
          return(
                 <div className="container">
                     {job && (<div key={job.id}> 
@@ -33,7 +39,11 @@ function JobDetails(){
                     
 
                     <div className="p-style"> </div>
-                    <button className="btn btn-primary">Apply Now</button>
+
+                    <button className="btn btn-back"><Link to="/jobs">Back</Link></button>
+
+                    <button className="btn btn-primary popup" onClick={PopUp}>Apply Now <span className="popuptext" id="myPopup"> Applied </span> </button>
+                    
                     <p className="p-style"><b>Posted on: </b> {moment(job.createdAt).format('MMM DD, yyyy')}</p>
                     <hr className="p-style"/>
 
