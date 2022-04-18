@@ -61,7 +61,7 @@ const jobSchema = new Schema({
         type: String,
         required: true
     },
-    appliedCndidates : {
+    applications : {
         type : [],
         //required: true
     },
