@@ -3,6 +3,7 @@ import "./Jobs.css";
 import { useSelector} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 
 function JobDetails(){
@@ -14,6 +15,7 @@ function JobDetails(){
    
          return(
                 <div className="container">
+
                     {job && (<div key={job.id}> 
                         <p className="p-style"> <b>Job Title:</b> {job.title} </p>
                         <p className="p-style"> <b>Company:</b> {job.company} </p>
@@ -31,18 +33,17 @@ function JobDetails(){
                         <p className="p-style"> <b>Total Candidates Applied:</b> {job.appliedCndidates.length} </p>
                         <hr className="p-style"/>
                     
-
                     <div className="p-style"> </div>
-                    <button className="btn btn-primary">Apply Now</button>
+
+                    <button className="btn btn-back"> <Link to="/Jobs"> Back</Link></button>
+
+                    <button className="btn btn-primary"> Apply Now</button>
+                    
                     <p className="p-style"><b>Posted on: </b> {moment(job.createdAt).format('MMM DD, yyyy')}</p>
                     <hr className="p-style"/>
 
                     </div>)
-                        }
-                        
-                            
-        
-                    
+                        }  
                 </div>
 
          )
