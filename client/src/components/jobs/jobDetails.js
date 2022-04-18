@@ -4,6 +4,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { applyToJob } from '../../actions/job';
 
 
 function JobDetails(){
