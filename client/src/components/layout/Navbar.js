@@ -20,7 +20,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       <Link to="/messenger">Messages</Link>
       </li>
       <li>
-        <Link to="/posts">Posts</Link>
+        <Link to="/posts">Blogs</Link>
       </li>
       <li>
         <Link to="/dashboard">
