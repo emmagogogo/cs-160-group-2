@@ -1,9 +1,10 @@
 import React from 'react';
 import "./Jobs.css";
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { applyToJob } from '../../actions/job';
 
 
 function JobDetails(){
@@ -11,11 +12,17 @@ function JobDetails(){
     console.log(id);
     const{jobs} = useSelector(state=>state.job);
 
-     const job = jobs.find(job=>job._id === id);
+    const job = jobs.find(job=>job._id === id);
 
-     function PopUp() {
+    const dispatch = useDispatch();
+
+    let Salary = document.getElementById('filter-Salary');
+
+    function PopUp() {
         var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
+        console.log(id);
+        dispatch(applyToJob(id));
     }
 
          return(
