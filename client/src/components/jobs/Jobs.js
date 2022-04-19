@@ -148,7 +148,7 @@ return(
                     <div className='block-element'>
                         <div className='inline-element'>
                             <select defaultValue={"none"} name="experience" id="filter-experience">
-                                <option value="none" disabled hidden>Select an Option</option>
+                                <option value="none">Select an Option</option>
                                 <option value='0-1 Years'> 0 - 1 Years</option>
                                 <option value='1-2 Years'> 1 - 2 Years</option>
                                 <option value='2-3 Years'> 2 - 3 Years </option>
