@@ -27,6 +27,7 @@ function Jobs(){
     // select the elements to be used in filtering
     let PartTime = document.getElementById('filter-PartTime');
     let FullTime = document.getElementById('filter-FullTime');
+    let Internship = document.getElementById('filter-Internship');
     let Salary = document.getElementById('filter-Salary');
     let Experience = document.getElementById('filter-experience');
     let Title = document.getElementById('filter-Title');
@@ -74,7 +75,10 @@ function Jobs(){
         if (FullTime.checked) {
             jFiltered = jFiltered.concat(jobs.filter(job => job.jobType === "Full Time"));
         } 
-
+        if (Internship.checked) {
+            jFiltered = jFiltered.concat(jobs.filter(job => job.jobType === "Internship"));
+        }
+        
         // remove duplicates
         jFiltered = jFiltered.filter((item,index)=>{
             return (jFiltered.indexOf(item) === index)
@@ -107,6 +111,10 @@ return(
                         <div className='inline-element'>
                             <input type="checkbox" id="filter-FullTime" name="FullTime" value="FullTime"/>
                             <label htmlFor="filter-FullTime"> Full Time</label>
+                        </div>
+                        <div className='inline-element'>
+                            <input type="checkbox" id="filter-Internship" name="Internship" value="Internship"/>
+                            <label htmlFor="filter-Internship"> Internship</label>
                         </div>
                     </div>
 

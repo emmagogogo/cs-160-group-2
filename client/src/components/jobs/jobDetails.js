@@ -42,7 +42,6 @@ function JobDetails(){
                         <p className="p-style"> <b>Salary Range:</b> {job.salaryFrom} - {job.salaryTo}</p>
                         <p className="p-style"> <b>Department:</b> {job.department} </p>
                         <p className="p-style"> <b>Company Profile:</b> {job.companyDescription} </p>
-                        <p className="p-style"> <b>Total Candidates Applied:</b> {job.appliedCndidates.length} </p>
                         <hr className="p-style"/>
                     
                     <div className="p-style"> </div>
