@@ -112,16 +112,13 @@ router.post('/:id/apply', [auth, checkObjectId('id')], async (req, res) => {
       return res.status(404).json({ msg: 'Job not found' });
     }
 
-    const user = await User.findById(req.user.id).select('-password');
-    const profile = await Profile.findById(req.user.id);
-
     const newApplication = new JobApplication({
       job: {
         "id": job.id,
         "title": job.title,
         "shortDescription": job.smallDescription
       },
-      user: user.id,
+      user: req.user.id,
       stage: "APPLIED",
       date: Date.now()
     });
