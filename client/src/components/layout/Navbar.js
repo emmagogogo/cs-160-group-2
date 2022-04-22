@@ -10,7 +10,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   const userType = JSON.parse(localStorage.getItem('type'));
   // const user = JSON.parse(localStorage.getItem('user'));
   // const userType = user.userType;
-  //console.log(userType);
+  console.log(userType);
   const authLinksApplicant = (
     <ul>
       <li>
@@ -105,7 +105,8 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
           </form>
         </div>
         {/* <Fragment>{isAuthenticated ? authLinksRecruiter : guestLinks}</Fragment> */}
-      <Fragment>{(isAuthenticated && userType === 'recruiter') ? authLinksRecruiter: (isAuthenticated && userType === 'applicant') ? authLinksApplicant:  guestLinks}</Fragment>
+      {/* <Fragment>{(isAuthenticated && userType === 'recruiter') ? authLinksRecruiter: ((isAuthenticated && userType === 'applicant') ? authLinksApplicant :  guestLinks)}</Fragment> */}
+      <Fragment>{isAuthenticated ? ((userType === 'recruiter') ? authLinksRecruiter : authLinksApplicant) : guestLinks}</Fragment>
     </nav>
   );
 };
