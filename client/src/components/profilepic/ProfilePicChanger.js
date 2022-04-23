@@ -17,7 +17,7 @@ function ProfilePicChanger(props) {
     }
 
     return (
-        <div className='profile-img-container'>
+        <span className='profile-img-container'>
             <img src={profileImg} alt='profile' id='profile-img' className='img round-img' style={{margin: props.margin}} />
             <input type="file" name='image-upload' id='input' accept='image/*' onChange={imgHandler}/>
             <span className='label'>
@@ -26,7 +26,7 @@ function ProfilePicChanger(props) {
                 Add your photo
             </label>
             </span>
-        </div>
+        </span>
     );
 }
 
