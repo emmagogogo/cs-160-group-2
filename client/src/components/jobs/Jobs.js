@@ -50,9 +50,19 @@ function Jobs(){
         //experience filter
         jFiltered = jFiltered.concat(jobs.filter(job => job.experience === Experience.value));
         // title filter
-        jFiltered = jFiltered.concat(jobs.filter(job => job.title === Title.value));
+        var titleLength = Title.value.length;
+
+        // filters database of titles with subTitles / 
+        if (titleLength > 0){
+            jFiltered = jFiltered.concat(jobs.filter
+                (job => job.title.substring(0, titleLength).toLowerCase() === Title.value.toLowerCase()));
+        }
+
         // company filter
-        jFiltered = jFiltered.concat(jobs.filter(job => job.company === Company.value));
+        var companyLength = Company.value.length;
+        if (companyLength > 0){ 
+            jFiltered = jFiltered.concat(jobs.filter(job => job.company.substring(0, companyLength).toLowerCase() === Company.value.toLowerCase()));
+        }
 
         // Date filter
         if (Today.checked) {
@@ -88,7 +98,6 @@ function Jobs(){
         filterJobs(jFiltered); 
     }
 
-    
 return(
     <section>
         <div className='jobs-page-container'>
