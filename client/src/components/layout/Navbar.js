@@ -23,6 +23,9 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       <Link to="/postjob">Post Job</Link>
       </li> */}
       <li>
+      <Link to="/applied">Applied</Link>
+      </li>
+      <li>
       <Link to="/messenger">Messages</Link>
       </li>
       <li>
@@ -53,6 +56,9 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       </li>
       <li>
       <Link to="/postjob">Post Job</Link>
+      </li>
+      <li>
+      <Link to="/posted">Posted</Link>
       </li>
       <li>
       <Link to="/messenger">Messages</Link>
