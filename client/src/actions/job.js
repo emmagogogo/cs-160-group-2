@@ -1,7 +1,8 @@
-
 import api from '../utils/api';
-import{message} from 'antd';
+import{ message } from 'antd';
 import { GET_ALL_JOBS, JOBS_ERROR } from './types';
+
+
 
 export const getAllJobs=() => async(dispatch)=>{
     try {
@@ -18,18 +19,31 @@ export const getAllJobs=() => async(dispatch)=>{
 
 }
 
-export const postjob=(values) => async(dispatch)=>{
-    values.postedBy = JSON.parse(localStorage.getItem('user'))._id;
+export const applyToJob=(id) => async(dispatch)=>{
+    dispatch({ type: 'LOADING', payload: true});
+    try {
+        const res = await api.post(`/jobs/${id}/apply`);
+        console.log(res);
+    } catch (err) {
+        
+       console.log(err);     
+    }
+
+}
+
+
+export const postjob=(values) => async (dispatch) =>{
+
+    //values.postedBy = JSON.parse(localStorage.getItem('user'))._id;
+    console.log("!!@!@ " + localStorage.getItem('profile'));
     dispatch({type: 'LOADING', payload: true})
     try {
-        const res = await api.post('/jobs/postjob', values);
-        dispatch({
-            type: 'LOADING',
-            payload: false
-        });
-        message.success('Job posted successfully');
+       const res = await api.post('/jobs/postjob', values);
+     
+       message.success('Job posted successfully');
+
         setTimeout(() => {
-            window.location.href='/';
+            window.location.href='/jobs';
         }, 1000);
     } catch (err) {
         //types: JOBS_ERROR,
@@ -38,3 +52,5 @@ export const postjob=(values) => async(dispatch)=>{
     }
 
 }
+
+

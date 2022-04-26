@@ -98,7 +98,7 @@ const App = () => {
           <Route path="jobs" element={<Jobs />} />
           <Route path="job-post" element={<PostJob />} />
           <Route path="/*" element={<NotFound />} />
-          <Route path="jobs/:id" element={<JobDetails/>} />
+          <Route path="jobs/:id" element={<JobDetails />} />
         </Routes>
       </Router>
     </Provider>
