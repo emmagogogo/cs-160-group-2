@@ -20,8 +20,7 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  },
-  appliedJobs:[]
+  }
 });
 
 module.exports = mongoose.model('user', UserSchema);

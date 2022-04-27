@@ -4,6 +4,8 @@ const router = express.Router();
 const Job = require("../../models/jobModel");
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
+const Profile = require('../../models/Profile')
+const JobApplication = require('../../models/JobApplication')
 const checkObjectId = require('../../middleware/checkObjectId');
 
 
@@ -18,6 +20,26 @@ router.get("/getalljobs", async(req, res) => {
     }
 
 });
+
+
+// @route    GET api/search?searchQuery=:searchQuery
+// @desc     Search for a job posting based on the query
+// @access   Public
+router.get("/search", async(req, res) => {
+  try{
+    const searchQuery = req.query.searchQuery
+
+    const jobs = await Job.find({'$text': {
+      '$search': searchQuery
+    }})
+
+    res.send(jobs)
+  }catch(error){
+    console.error(error.message);
+    return res.status(400).json({ error});
+
+}
+})
 
 router.post("/postjob", auth, async(req, res) => {
     try {
@@ -61,7 +83,7 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
       const job = await Job.findById(req.params.id);
   
       if (!job) {
-        return res.status(404).json({ msg: 'Post not found' });
+        return res.status(404).json({ msg: 'Job not found' });
       }
   
       // Check user
@@ -78,5 +100,45 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
       res.status(500).send('Server Error');
     }
   });
+
+// @route    POST api/jobs/:id/apply
+// @desc     Apply to a job, creating a job application in the process
+// @access   Private
+router.post('/:id/apply', [auth, checkObjectId('id')], async (req, res) => {
+  try {
+    const job = await Job.findById(req.params.id);
+
+    if (!job) {
+      return res.status(404).json({ msg: 'Job not found' });
+    }
+
+    const newApplication = new JobApplication({
+      job: {
+        "id": job.id,
+        "title": job.title,
+        "shortDescription": job.smallDescription
+      },
+      user: req.user.id,
+      stage: "APPLIED",
+      date: Date.now()
+    });
+
+    await newApplication.save();
+
+    // if(!profile.hasOwnProperty(applications)) profile.applications = []
+    // profile.applications.push(newApplication.id)
+    
+    job.applications.push(newApplication.id)
+    // await profile.save()
+    await job.save()
+
+
+    res.json({ msg: 'Applied successfully!' });
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

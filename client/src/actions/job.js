@@ -19,6 +19,19 @@ export const getAllJobs=() => async(dispatch)=>{
 
 }
 
+export const applyToJob=(id) => async(dispatch)=>{
+    dispatch({ type: 'LOADING', payload: true});
+    try {
+        const res = await api.post(`/jobs/${id}/apply`);
+        console.log(res);
+    } catch (err) {
+        
+       console.log(err);     
+    }
+
+}
+
+
 export const postjob=(values) => async (dispatch) =>{
 
     //values.postedBy = JSON.parse(localStorage.getItem('user'))._id;
@@ -39,3 +52,5 @@ export const postjob=(values) => async (dispatch) =>{
     }
 
 }
+
+

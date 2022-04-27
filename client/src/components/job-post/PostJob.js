@@ -1,5 +1,3 @@
-
-   
 import React, {useState}from 'react';
 import {Row, Col, Form, Tabs, Input, Button, Select} from 'antd';
 import {useDispatch} from 'react-redux';
