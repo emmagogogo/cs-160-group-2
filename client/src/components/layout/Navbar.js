@@ -3,9 +3,15 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+//import {userType} from '../../middleware/userType';
+
 
 const Navbar = ({ auth: { isAuthenticated }, logout }) => {
-  const authLinks = (
+  const userType = JSON.parse(localStorage.getItem('type'));
+  // const user = JSON.parse(localStorage.getItem('user'));
+  // const userType = user.userType;
+  console.log(userType);
+  const authLinksApplicant = (
     <ul>
       <li>
         <Link to="/profiles">Network</Link>
@@ -13,8 +19,11 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       <li>
       <Link to="/jobs">Jobs</Link>
       </li>
-      <li>
+      {/* <li>
       <Link to="/postjob">Post Job</Link>
+      </li> */}
+      <li>
+      <Link to="/applied">Applied</Link>
       </li>
       <li>
       <Link to="/messenger">Messages</Link>
@@ -37,6 +46,42 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
     </ul>
   );
 
+  const authLinksRecruiter = (
+    <ul>
+      <li>
+        <Link to="/profiles">Network</Link>
+      </li>
+      <li>
+      <Link to="/jobs">Jobs</Link>
+      </li>
+      <li>
+      <Link to="/postjob">Post Job</Link>
+      </li>
+      <li>
+      <Link to="/posted">Posted</Link>
+      </li>
+      <li>
+      <Link to="/messenger">Messages</Link>
+      </li>
+      <li>
+        <Link to="/posts">Blogs</Link>
+      </li>
+      <li>
+        <Link to="/dashboard">
+          <i className="fas fa-user" />{' '}
+          <span className="hide-sm">Dashboard</span>
+        </Link>
+      </li>
+      <li>
+        <a onClick={logout} href="#!">
+          <i className="fas fa-sign-out-alt" />{' '}
+          <span className="hide-sm">Logout</span>
+        </a>
+      </li>
+    </ul>
+  );
+
+
   const guestLinks = (
     <ul>
       <li>
@@ -50,7 +95,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       </li>
     </ul>
   );
-
+  
   return (
     <nav className="navbar bg-dark">
       <h1>
@@ -65,7 +110,9 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
             <button type="submit"><i className="fa fa-search"></i></button>
           </form>
         </div>
-      <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        {/* <Fragment>{isAuthenticated ? authLinksRecruiter : guestLinks}</Fragment> */}
+      {/* <Fragment>{(isAuthenticated && userType === 'recruiter') ? authLinksRecruiter: ((isAuthenticated && userType === 'applicant') ? authLinksApplicant :  guestLinks)}</Fragment> */}
+      <Fragment>{isAuthenticated ? ((userType === 'recruiter') ? authLinksRecruiter : authLinksApplicant) : guestLinks}</Fragment>
     </nav>
   );
 };

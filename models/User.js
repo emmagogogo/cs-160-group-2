@@ -20,6 +20,11 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  userType: {
+    type: String,
+    enum: ["recruiter", "applicant"],
+    required: true
   }
 });
 

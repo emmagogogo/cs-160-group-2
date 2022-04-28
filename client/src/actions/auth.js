@@ -21,11 +21,13 @@ import {
 export const loadUser = () => async (dispatch) => {
   try {
     const res = await api.get('/auth');
-
+    const userType= res.data.userType;
+    localStorage.setItem('type', JSON.stringify(userType));
     dispatch({
       type: USER_LOADED,
       payload: res.data
-    });
+    });  
+    
   } catch (err) {
     dispatch({
       type: AUTH_ERROR
