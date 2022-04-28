@@ -10,10 +10,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     name: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
+    userType: ''
   });
 
-  const { name, email, password, password2 } = formData;
+  const { name, email, password, password2, userType } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +24,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({ name, email, password });
+      register({ name, email, password, userType });
     }
   };
 
@@ -38,6 +39,17 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <i className="fas fa-user" /> Make your Professional life easier
       </p>
       <form className="form" onSubmit={onSubmit}>
+        <div className = "form-group">
+          <small class="form-text"
+              >Give us an idea of the role of you
+          </small>
+          <select name="userType" value={userType} required onChange={onChange}>
+              <option value="">* Select User Type</option>
+              <option value="recruiter">Recruiter</option>
+              <option value="applicant">Applicant</option>
+          </select>
+        </div>
+
         <div className="form-group">
           <input
             type="text"

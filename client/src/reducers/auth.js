@@ -13,8 +13,7 @@ const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
-  user: localStorage.getItem('user')
-  //made soma changes
+  user: null
 };
 
 function authReducer(state = initialState, action) {
