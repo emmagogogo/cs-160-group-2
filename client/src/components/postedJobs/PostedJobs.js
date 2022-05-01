@@ -1,6 +1,6 @@
 //import React, {useState, useEffect} from 'react';
 import React from 'react';
-import './postedJob.css';
+import './postedJobs.css';
 import{useSelector} from 'react-redux';
 import{Table} from 'antd';
 import moment from 'moment';
@@ -18,6 +18,7 @@ function PostedJobs(){
     //console.log(allJobs);
     const user = useSelector(state=>state.auth.user)
     const userid = user._id;
+    console.log(userid);
     const userPostedJobs = allJobs.filter(job=>job.postedBy === userid);
 
 
