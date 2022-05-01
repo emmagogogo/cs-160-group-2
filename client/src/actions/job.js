@@ -53,6 +53,26 @@ export const postjob=(values) => async (dispatch) =>{
 
 }
 
+export const editJob=(job, values) => async (dispatch) =>{
+ 
+  
+    dispatch({type: 'LOADING', payload: true})
+    try {
+       await api.post(`/jobs/editjob/${job}`, values);
+    
+       message.success('Job updated successfully');
+  
+        setTimeout(() => {
+            window.location.href='/jobs';
+        }, 2000);
+    } catch (err) {
+        //types: JOBS_ERROR,
+       // payload: { msg: err.response.statusText, status: err.response.status }
+       console.log(err);   
+       dispatch({type: 'LOADING', payload: false})
+    }
+ }
+ 
 
 
 
