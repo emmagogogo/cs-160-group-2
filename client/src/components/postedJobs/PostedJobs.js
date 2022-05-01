@@ -57,7 +57,7 @@ const dataSource = [];
             title: job.title,
             company: job.company,
             postedOn: moment(job.createdAt).format('MMM-DD-yyyy'), 
-            appliedCandidates: job.appliedCndidates.length,
+            appliedCandidates: job.applications.length,
             completeJobData: job
     
         }
