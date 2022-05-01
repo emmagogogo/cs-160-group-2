@@ -16,7 +16,7 @@ function JobDetails(){
 
     const dispatch = useDispatch();
 
-    let Salary = document.getElementById('filter-Salary');
+    //let Salary = document.getElementById('filter-Salary');
 
     function PopUp() {
         var popup = document.getElementById("myPopup");

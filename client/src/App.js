@@ -31,6 +31,8 @@ import setAuthToken from './utils/setAuthToken';
 import './App.css';
 import messenger from './components/messenger/Messenger';
 import { getAllJobs } from './actions/job';
+import applied from './components/applied-and-posted/Applied';
+import posted from './components/applied-and-posted/Posted';
 
 
 const App = () => {
@@ -92,6 +94,14 @@ const App = () => {
           <Route
             path="messenger"
             element={<PrivateRoute component={messenger} />}
+          />
+          <Route
+            path="applied"
+            element={<PrivateRoute component={applied} />}
+          />
+          <Route
+            path="posted"
+            element={<PrivateRoute component={posted} />}
           />
           <Route path="posts" element={<PrivateRoute component={Posts} />} />
           <Route path="posts/:id" element={<PrivateRoute component={Post} />} />

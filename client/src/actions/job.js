@@ -1,6 +1,6 @@
 import api from '../utils/api';
 import{ message } from 'antd';
-import { GET_ALL_JOBS, JOBS_ERROR } from './types';
+import { GET_ALL_JOBS } from './types';
 
 
 
@@ -38,7 +38,7 @@ export const postjob=(values) => async (dispatch) =>{
     console.log("!!@!@ " + localStorage.getItem('profile'));
     dispatch({type: 'LOADING', payload: true})
     try {
-       const res = await api.post('/jobs/postjob', values);
+       //const res = await api.post('/jobs/postjob', values);
      
        message.success('Job posted successfully');
 
