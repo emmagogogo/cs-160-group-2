@@ -141,4 +141,29 @@ router.post('/:id/apply', [auth, checkObjectId('id')], async (req, res) => {
   }
 });
 
+
+// @route    POST api/jobs/editjob/:id
+// @desc     edit a posted job
+// @access   Private
+router.post('/editjob/:id', [auth, checkObjectId('id')], async(req, res) => {
+  try {
+   
+    const job = await Job.findById(req.params.id);
+  
+    if (!job) {
+      return res.status(404).json({ msg: 'Job not found' });
+    }
+  
+    const updatedJob = await Job.findOneAndUpdate({_id: req.params.id}, req.body);
+    res.send('Job updated successfully');
+  
+  } catch (error) {
+    return res.status(400).json({ error});
+  }
+  
+  
+ });
+ 
+
+
 module.exports = router;
