@@ -19,7 +19,7 @@ import JobDetails from './components/jobs/jobDetails';
 import PostJob from './components/job-post/PostJob.js';
 import EditJob from './components/job-post/EditJob.js';
 import PostedJobs from './components/postedJobs/PostedJobs';
-
+import AppliedJobs from './components/appliedJobs/AppliedJobs';
 
 import NotFound from './components/layout/NotFound';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -102,8 +102,12 @@ const App = () => {
           <Route path="postjob" element={<PostJob />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="jobs/:id" element={<JobDetails />} />
+
           <Route path="posted" element={<PostedJobs />} />
+          <Route path="applied" element={<AppliedJobs />} />
+          
           <Route path="editjob/:id" element={<EditJob />} />
+
         </Routes>
       </Router>
     </Provider>
