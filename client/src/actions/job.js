@@ -56,7 +56,7 @@ export const postjob=(values) => async (dispatch) =>{
 export const searchForJobs=(values) => async (dispatch) => {
     dispatch({type: 'LOADING', payload: true}) 
     try {
-        const rest = await api.get('/jobs/search', values);
+        const res = await api.get('/jobs/search', values);
         dispatch({
             type: SEARCHED_JOBS,
             payload: res.data
