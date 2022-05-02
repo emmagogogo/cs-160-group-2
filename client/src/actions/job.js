@@ -1,6 +1,6 @@
 import api from '../utils/api';
 import{ message } from 'antd';
-import { GET_ALL_JOBS, JOBS_ERROR } from './types';
+import { GET_ALL_JOBS, JOBS_ERROR, SEARCHED_JOBS } from './types';
 
 
 
@@ -53,4 +53,15 @@ export const postjob=(values) => async (dispatch) =>{
 
 }
 
-
+export const searchForJobs=(values) => async (dispatch) => {
+    dispatch({type: 'LOADING', payload: true}) 
+    try {
+        const rest = await api.get('/jobs/search', values);
+        dispatch({
+            type: SEARCHED_JOBS,
+            payload: res.data
+        });
+    } catch (err) {
+        console.log(err);     
+     }
+}
