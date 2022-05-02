@@ -7,6 +7,7 @@ const User = require('../../models/User');
 const Profile = require('../../models/Profile')
 const JobApplication = require('../../models/JobApplication')
 const checkObjectId = require('../../middleware/checkObjectId');
+const moment = require("moment");
 
 
 router.get("/getalljobs", async(req, res) => {
@@ -127,13 +128,25 @@ router.post('/:id/apply', [auth, checkObjectId('id')], async (req, res) => {
 
     // if(!profile.hasOwnProperty(applications)) profile.applications = []
     // profile.applications.push(newApplication.id)
-    
-    job.applications.push(newApplication.id)
+    const appliedCandidate = {
+      userid : req.user.id,
+      appliedDate : moment().format('MMM DD yyyy')
+  }
+    job.applications.push(appliedCandidate);
     // await profile.save()
-    await job.save()
+    await job.save();
 
+    //res.json({ msg: 'Applied successfully!' });
 
-    res.json({ msg: 'Applied successfully!' });
+    const user = await User.findById(req.user.id);
+    const appliedJob = {
+        jobid: job.id,
+        appliedDate: moment().format('MMM-DD-yyyy')
+    }
+    user.appliedJobs.push(appliedJob);
+    await user.save();
+    res.send('Job Applied successfully!');
+
   } catch (err) {
     console.error(err.message);
 

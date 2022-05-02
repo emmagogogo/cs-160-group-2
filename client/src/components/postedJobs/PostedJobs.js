@@ -18,7 +18,6 @@ function PostedJobs(){
     //console.log(allJobs);
     const user = useSelector(state=>state.auth.user)
     const userid = user._id;
-    console.log(userid);
     const userPostedJobs = allJobs.filter(job=>job.postedBy === userid);
 
 

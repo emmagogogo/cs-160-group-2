@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ["recruiter", "applicant"],
     required: true
-  }
+  },
+  appliedJobs: []
 });
 
 module.exports = mongoose.model('user', UserSchema);
