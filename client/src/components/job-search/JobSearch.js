@@ -5,19 +5,25 @@ import {Row, Col} from 'antd';
 import "../jobs/Jobs.css";
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import api from '../../utils/api';
 
-function searchForJobs() {
+function JobSearch() {
     var{jobs} = useSelector(state=>state.job);
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
-    useEffect(() =>{
-        dispatch(searchForJobs("Java"))
-    }, [])
-
+    
         // update the filtered array using hooks
-    const [filterdJobs, filterJobs] = useState(jobs);
+    const [filterdJobs, setFilterJobs] = useState(jobs);
     // used to differentiate between the filtered and not filtered jobs display 
     const [filtered, setfiltered] = useState(false);
+
+    useEffect(() =>{
+        api.get(`/jobs/search?searchQuery="java"}`).then((res) => {
+             console.log(res.data)
+             setFilterJobs(res.data)
+             
+        })
+    })
 
     // select the elements to be used in filtering
     let PartTime = document.getElementById('filter-PartTime');
@@ -90,7 +96,7 @@ function searchForJobs() {
         })
     
         // update the filtered array
-        filterJobs(jFiltered); 
+        setFilterJobs(jFiltered); 
     }
 
 return(
@@ -203,4 +209,4 @@ return(
     </section>
 );
 }
-export default searchForJobs
+export default JobSearch

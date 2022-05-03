@@ -56,11 +56,12 @@ export const postjob=(values) => async (dispatch) =>{
 export const searchForJobs=(values) => async (dispatch) => {
     dispatch({type: 'LOADING', payload: true}) 
     try {
-        const res = await api.get('/jobs/search', values);
+        const res = await api.get('/jobs/search?searchQuery=java', values);
         dispatch({
             type: SEARCHED_JOBS,
             payload: res.data
         });
+        return res.data
     } catch (err) {
         console.log(err);     
      }
