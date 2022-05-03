@@ -17,7 +17,7 @@ function Jobs(){
 
     useEffect(() =>{
         dispatch(getAllJobs())
-    }, [])
+    }, []);
 
     // update the filtered array using hooks
     const [filterdJobs, filterJobs] = useState(jobs);

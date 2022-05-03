@@ -1,5 +1,5 @@
 //03/27
-import { GET_ALL_JOBS, JOBS_ERROR } from '../actions/types';
+import { GET_ALL_JOBS } from '../actions/types';
 const initialState = {
     jobs: []
 }
