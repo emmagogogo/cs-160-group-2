@@ -34,6 +34,8 @@ import setAuthToken from './utils/setAuthToken';
 import './App.css';
 import messenger from './components/messenger/Messenger';
 import { getAllJobs } from './actions/job';
+import applied from './components/applied-and-posted/Applied';
+import posted from './components/applied-and-posted/Posted';
 
 
 const App = () => {

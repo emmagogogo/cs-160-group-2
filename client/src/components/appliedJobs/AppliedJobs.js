@@ -1,38 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useSelector} from "react-redux";
 import { Table } from "antd";
 import './appliedJobs.css';
+import api from '../../utils/api'
 
 
 function AppliedJobs() {
     const jobs = useSelector(state=>state.job).jobs;
     const user = useSelector(state=>state.auth.user);
     const userid = user._id;
-    // console.log(jobs);
-    // console.log(userid);
+    const [userAppliedJobs, setUserAppliedJobs] = useState([])
 
-    const userAppliedJobs=[]
-
-
-    for(var job of jobs){
-
-         var appliedCandidates = job.applications;
-
-         var temp = appliedCandidates.find(candidate=>candidate.userid==userid)
-
-        
-         if(temp){
-
-              var obj = {
-                  title : job.title,
-                  company : job.company ,
-                  appliedDate : temp.appliedDate
-              }
-
-              userAppliedJobs.push(obj);
-         }  
-
-    }
+    useEffect(() => {
+        api.get('/jobs/getMyApplications').then(async (res) => {
+            setUserAppliedJobs(res.data.map(jobApplication => jobApplication.job[0]))
+        })
+    });
 
     const columns = [
         {

@@ -8,6 +8,7 @@ const Profile = require('../../models/Profile')
 const JobApplication = require('../../models/JobApplication')
 const checkObjectId = require('../../middleware/checkObjectId');
 const moment = require("moment");
+const ObjectID = require('mongodb').ObjectID
 
 
 router.get("/getalljobs", async(req, res) => {
@@ -56,6 +57,32 @@ router.post("/postjob", auth, async(req, res) => {
     }
 
 });
+
+// @route    GET api/jobs/getMyApplications
+// @desc     Get job applications from a user
+// @access   Private
+router.get('/getMyApplications', auth, async(req, res) => {
+  try{
+    const jobApplications = await JobApplication.aggregate([{$lookup: {
+      from: 'jobs',
+      localField: 'job.id',
+      foreignField: '_id',
+      as: 'job'
+     }}, {$match: {
+      user: ObjectID(req.user.id)
+     }}, {$unset: 
+       ["job.applications"]
+     }])
+  
+     res.json(jobApplications);
+
+  } catch(err){
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+  }
+),
 
 // @route    GET api/jobs/:id
 // @desc     Get post by ID
