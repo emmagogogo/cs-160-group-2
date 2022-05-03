@@ -155,7 +155,7 @@ router.post('/:id/apply', [auth, checkObjectId('id')], async (req, res) => {
     // if(!profile.hasOwnProperty(applications)) profile.applications = []
     // profile.applications.push(newApplication.id)
     
-    job.applications.push(newApplication.id)
+    job.applications.push(ObjectID(newApplication.id))
     // await profile.save()
     await job.save()
 
