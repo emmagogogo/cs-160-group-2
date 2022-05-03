@@ -35,7 +35,7 @@ export const applyToJob=(id) => async(dispatch)=>{
 export const postjob=(values) => async (dispatch) =>{
 
     //values.postedBy = JSON.parse(localStorage.getItem('user'))._id;
-    console.log("!!@!@ " + localStorage.getItem('profile'));
+    //console.log("!!@!@ " + localStorage.getItem('profile'));
     dispatch({type: 'LOADING', payload: true})
     try {
        const res = await api.post('/jobs/postjob', values);
