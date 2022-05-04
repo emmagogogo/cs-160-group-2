@@ -6,9 +6,7 @@ import api from '../../utils/api'
 
 
 function AppliedJobs() {
-    const jobs = useSelector(state=>state.job).jobs;
-    const user = useSelector(state=>state.auth.user);
-    const userid = user._id;
+    
     const [userAppliedJobs, setUserAppliedJobs] = useState([])
 
     useEffect(() => {
