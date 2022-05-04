@@ -73,6 +73,15 @@ export const editJob=(job, values) => async (dispatch) =>{
     }
  }
  
+ export const deleteJob = (id) => async ( dispatch)=>{
+    dispatch({ type: 'LOADING', payload: true});
+    try {
+        const res = await api.delete(`/jobs/${id}`);
+        message.success('Job was deleted successfully');
+    } catch (err) {
+        
+       console.log(err);     
+    }
 
-
+}
 
