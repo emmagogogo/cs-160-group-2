@@ -87,7 +87,7 @@ router.get('/getMyApplications', auth, async(req, res) => {
 // @route    GET api/:jobId/getApplications
 // @desc     Get job applications for a job
 // @access   Private
-router.get('/:id/getApplications', auth, checkObjectId('id'), async(req, res) => {
+router.get('/:id/getCandidates', auth, checkObjectId('id'), async(req, res) => {
   try{
 
       const job = await Job.findById(req.params.id);
