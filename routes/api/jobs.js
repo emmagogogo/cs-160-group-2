@@ -84,6 +84,52 @@ router.get('/getMyApplications', auth, async(req, res) => {
   }
 ),
 
+// @route    GET api/:jobId/getApplications
+// @desc     Get job applications for a job
+// @access   Private
+router.get('/:id/getApplications', auth, checkObjectId('id'), async(req, res) => {
+  try{
+
+      const job = await Job.findById(req.params.id);
+  
+      if (!job) {
+        return res.status(404).json({ msg: 'Job not found' });
+      }
+
+    const jobApplications = await JobApplication.aggregate(
+      [
+        {
+          '$match': {
+            'job.id': ObjectID(req.params.id)
+          }
+        }, {
+          '$lookup': {
+            'from': 'jobs', 
+            'localField': 'job.id', 
+            'foreignField': '_id', 
+            'as': 'jobDetails'
+          }
+        }, {
+          '$lookup': {
+            'from': 'profiles', 
+            'localField': 'user', 
+            'foreignField': 'user', 
+            'as': 'profileDetails'
+          }
+        }
+      ]
+     )
+  
+     res.json(jobApplications);
+
+  } catch(err){
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+  }
+),
+
 // @route    GET api/jobs/:id
 // @desc     Get post by ID
 // @access   Private
