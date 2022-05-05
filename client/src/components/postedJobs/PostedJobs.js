@@ -1,12 +1,14 @@
 //import React, {useState, useEffect} from 'react';
 import React from 'react';
 import './postedJobs.css';
-import{useSelector} from 'react-redux';
-import{Table} from 'antd';
+import{useSelector, useDispatch} from 'react-redux';
+import{Table, Modal} from 'antd';
 import moment from 'moment';
-import {EditOutlined} from '@ant-design/icons'
+import {EditOutlined, OrderedListOutlined, DeleteOutlined, ExclamationCircleOutlined} from '@ant-design/icons'
 import{ useNavigate } from "react-router-dom";
-//import { getJobByUserId  } from '../../actions/job';
+import { deleteJob } from '../../actions/job';
+const { confirm } = Modal;
+
 //import api from '../../utils/api.js';
 
 
@@ -15,10 +17,12 @@ function PostedJobs(){
 
     const navigate = useNavigate();
     const allJobs = useSelector(state=>state.job).jobs;
-    //console.log(allJobs);
-    const user = useSelector(state=>state.auth.user)
-    const userid = user._id;
+    const userid = JSON.parse(localStorage.getItem('id'));
     const userPostedJobs = allJobs.filter(job=>job.postedBy === userid);
+    const dispatch = useDispatch();
+
+  
+
 
 
     const columns = [{
@@ -42,11 +46,30 @@ function PostedJobs(){
         render : (text, data)=>{
             return <div className="flex"> 
                 <EditOutlined onClick={()=>{navigate(`/editjob/${data.completeJobData._id}`)}}/>
+                <OrderedListOutlined style={{fontSize:20}}/>
+                <DeleteOutlined style={{fontSize:20}} onClick={()=> popup(data.completeJobData._id)}/>
             </div>
         }
     }
 
 ];
+
+    function popup(data){
+        
+        confirm({
+            title: 'Do you want to delete this job?',
+            icon: <ExclamationCircleOutlined />,
+            content: '',
+            onOk() {
+                dispatch(deleteJob(data));
+            },
+            onCancel() {
+            console.log('Cancel');
+            },
+        });
+
+    
+}
 
 const dataSource = [];
  
@@ -74,5 +97,6 @@ const dataSource = [];
         
     
 }
+
 
 export default PostedJobs;
