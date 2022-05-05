@@ -23,6 +23,7 @@ export const loadUser = () => async (dispatch) => {
     const res = await api.get('/auth');
     const userType= res.data.userType;
     localStorage.setItem('type', JSON.stringify(userType));
+    localStorage.setItem('id', JSON.stringify(res.data._id));
     dispatch({
       type: USER_LOADED,
       payload: res.data
