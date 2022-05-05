@@ -149,8 +149,8 @@ router.get('/:id', auth, checkObjectId('id'), async (req, res) => {
     }
   });
 
-// @route    DELETE api/posts/:id
-// @desc     Delete a post
+// @route    DELETE api/jobs/:id
+// @desc     Delete a job
 // @access   Private
 router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
     try {
@@ -167,7 +167,7 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
   
       await job.remove();
   
-      res.json({ msg: 'Post removed' });
+      res.json({ msg: 'Job removed' });
     } catch (err) {
       console.error(err.message);
   
