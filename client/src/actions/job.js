@@ -64,7 +64,7 @@ export const editJob=(job, values) => async (dispatch) =>{
   
         setTimeout(() => {
             window.location.href='/jobs';
-        }, 2000);
+        }, 3000);
     } catch (err) {
         //types: JOBS_ERROR,
        // payload: { msg: err.response.statusText, status: err.response.status }
@@ -72,12 +72,20 @@ export const editJob=(job, values) => async (dispatch) =>{
        dispatch({type: 'LOADING', payload: false})
     }
  }
+
+
+
  
  export const deleteJob = (id) => async ( dispatch)=>{
     dispatch({ type: 'LOADING', payload: true});
     try {
         const res = await api.delete(`/jobs/${id}`);
+        console.log(res);
         message.success('Job was deleted successfully');
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
+        
     } catch (err) {
         
        console.log(err);     
