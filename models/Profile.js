@@ -5,28 +5,57 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
+  firstName: {
+    type: String,
+    default:'',
+    required: true
+  },
+  lastName: {
+    type: String,
+    default:'',
+    required: true
+  },
+  email: {
+    type: String,
+    default:'',
+    required: true
+  },
+
+  phoneNumber: {
+    type: String,
+    default:'',
+    required: true
+  },
+
   company: {
-    type: String
+    type: String,
+    default:''
   },
   website: {
-    type: String
+    type: String,
+    default:''
   },
   location: {
-    type: String
+    type: String,
+    default:''
   },
   status: {
     type: String,
+    default:'',
     required: true
   },
   skills: {
     type: [String],
+    default:'',
     required: true
   },
   bio: {
-    type: String
+    type: String,
+    default:''
   },
   githubusername: {
-    type: String
+    type: String,
+    default:''
   },
   experience: [
     {
@@ -89,7 +118,7 @@ const ProfileSchema = new mongoose.Schema({
   ],
   social: {
     youtube: {
-      type: String
+      type: String,
     },
     twitter: {
       type: String
