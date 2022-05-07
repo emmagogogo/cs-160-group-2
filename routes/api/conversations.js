@@ -18,7 +18,7 @@ router.post("/", async (req, res)=>{
 
 
 // get conv
-route.get("/:userId", async (req, res)=>{
+router.get("/:userId", async (req, res)=>{
     try{
         const conversation = await Conversation.find({
             members: { $in: [req.params.userId] }
