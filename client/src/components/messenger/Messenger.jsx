@@ -1,16 +1,20 @@
 import "./Messenger.css"
-import Conversation from '../conversations/Conversation';
+import Conversation from "../conversations/Conversation";
 import Message from "../message/Message";
 import ChatOnline from "../chat-online/ChatOnline";
-
+import { useState, useContext, useEffect } from "react";
+import { AuthContext} from "../../context/AuthContext";
+import axios from "axios";
 
 const Messenger = () => {
+    const [ conversations, setConversations] = useState([]);
+    const { user } = useContext(AuthContext);
 
     return (
         <section className="container msg-container">
             <div className="chat-menu">
                 <div className="chat-menu-wrapper">
-                    <input placeholder="start chatting" className="chat-menu-input"/>
+                    <input placeholder="Conversations:" className="chat-menu-input"/>
                     <Conversation />
                     <Conversation />
                     <Conversation />
@@ -36,7 +40,7 @@ const Messenger = () => {
                         <Message />
                     </div>
                     <div className="chat-box-bottom">
-                        <textarea className="chat-message-input" placeholder="write somthing..."></textarea>
+                        <textarea className="chat-message-input" placeholder="Message"></textarea>
                         <button className="chat-submit-button">Send</button>
                     </div>
                 </div>

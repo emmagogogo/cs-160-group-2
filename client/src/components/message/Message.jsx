@@ -9,7 +9,7 @@ const Message = ({own}) => {
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtej8A8iI5h-E2JkZylE9Qm3aOZCQzXxhtrA&usqp=CAU" 
                     alt=""
                 />
-                <p className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p className="message-text">Sample message</p>
                 <img className={own ? "message-img" : "message-img hidden"}
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtej8A8iI5h-E2JkZylE9Qm3aOZCQzXxhtrA&usqp=CAU" 
                     alt="" 

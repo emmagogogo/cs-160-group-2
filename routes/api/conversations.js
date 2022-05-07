@@ -9,23 +9,23 @@ router.post("/", async (req, res)=>{
     });
 
     try{
-        const sevedConversation = await newConversation.save(); 
-        res.status(200).json(sevedConversation);
-    } catch(err) {
-        res.status(500).json(err);
+        const savedConversation = await newConversation.save(); 
+        res.status(200).json(savedConversation);
+    } catch(error) {
+        res.status(500).json(error);
     }
 })
 
 
 // get conv
-route.get("/:getId", async (req, res)=>{
+route.get("/:userId", async (req, res)=>{
     try{
         const conversation = await Conversation.find({
             members: { $in: [req.params.userId] }
         });
         res.status(200).json(conversation);
-    } catch (err) {
-        res.status(500).json(err);
+    } catch (error) {
+        res.status(500).json(error);
     }
 });
 

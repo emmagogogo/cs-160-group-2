@@ -1,15 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const ConversationSchema = new mongoose.Schema(
     {
-        conversationId: {
-            type: String,
-        },
-        sender: {
-            type: String,
-        },
-        text: {
-            type: String,
+        members: {
+            type: Array,
         },
     },
     {
@@ -17,4 +11,4 @@ const ConversationSchema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model('Conversation', ConversationSchema);
+module.exports = mongoose.model("Conversation", ConversationSchema);
