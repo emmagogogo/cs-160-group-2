@@ -1,0 +1,84 @@
+GET http://localhost:8000/api/jobs/6254e60ffbc328c9fa1c836a HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIyOTVlMGE5MGMzOGM1YzFiMTlhYzYyIn0sImlhdCI6MTY0OTkwODA2OCwiZXhwIjoxNjUwMzQwMDY4fQ.x7AHEVPDOYxd18R7pMNSEOroI8hMVpwm9WwNjsvfF0A
+
+
+###
+GET http://localhost:8000/api/jobs/getalljobs HTTP/1.1
+# x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6
+
+###
+GET http://localhost:8000/api/jobs/search?searchQuery=java HTTP/1.1
+###
+
+GET http://localhost:8000/api/jobs/625791b79d1668f2c97dc02d HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIyOTVlMGE5MGMzOGM1YzFiMTlhYzYyIn0sImlhdCI6MTY1MDMzMTcyOSwiZXhwIjoxNjUwNzYzNzI5fQ.kY7JIGjKeTkXEkEvwM7abYC2PbAyxXoY0POBbTDDa7Y
+###
+
+POST http://localhost:8000/api/auth/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "lisa123@gmail.com",
+    "password": "123456"
+
+}
+###
+POST http://localhost:8000/api/jobs/postjob HTTP/1.1
+content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2OWZmZWQwOWI5ZGRjMDc4Yzk3OWUwIn0sImlhdCI6MTY1MTExNTM0MCwiZXhwIjoxNjUxNTQ3MzQwfQ.RT3SIG-g9cOC3sKKTJHWYZKVh7ToppSxk7ByAoqxcCg
+
+{
+    "title": "Java Developer2",
+    "department": "IT",
+    "location": "San Jose",
+    "jobType": "Internship",
+    "salaryFrom": 20000,
+    "salaryTo": 35000,
+    "experience": "3",
+    "skillRequired": "strong js knowledge",
+    "minimumQualification": "batchelor degree",
+    "smallDescription": "We are looking for a passionate hands-on engineers to join the Bangalore Swiggy Engineering team.",
+    "fullDescription": "React.js, a comprehensive JavaScript library for building user interfaces, has changed the way we think about front-end development. React.js has grasped the interest of the open source community and it is here to stay. However, the nuances and idiosyncrasies of React.js require extra caution when distinguishing between good JavaScript developers and true experienced React.js developers.",
+    "company": "SR Tech",
+    "email": "edvensoft@gmail.com",
+    "phoneNumber": "9989632587",
+    "postedBy": "6122434efdc7c27220f485d8",
+    "companyDescription": "EdvenSoft Solutions is an industry leader with a solid track record of software solution delivery success as evidenced by our many success stories"
+}
+
+###
+DELETE http://localhost:8000/api/jobs/6254e60ffbc328c9fa1c836a HTTP/1.1
+content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIyOTVlMGE5MGMzOGM1YzFiMTlhYzYyIn0sImlhdCI6MTY0OTkwODA2OCwiZXhwIjoxNjUwMzQwMDY4fQ.x7AHEVPDOYxd18R7pMNSEOroI8hMVpwm9WwNjsvfF0A
+
+###
+POST http://localhost:8000/api/jobs/6254e60ffbc328c9fa1c836a/apply HTTP/1.1
+content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2OWZmZWQwOWI5ZGRjMDc4Yzk3OWUwIn0sImlhdCI6MTY1MTExNTM0MCwiZXhwIjoxNjUxNTQ3MzQwfQ.RT3SIG-g9cOC3sKKTJHWYZKVh7ToppSxk7ByAoqxcCg
+
+
+###
+
+GET  http://localhost:8000/api/jobs/getMyApplications
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTcxOTIzMSwiZXhwIjoxNjUyMTUxMjMxfQ.6e5wz3iVblbROg-8-RKtgA54CRXFf4KEK7UnT4W4wck
+
+###
+
+GET  http://localhost:8000/api/jobs/6254d6c6473f57beb028b203/getCandidates
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2MjU3MiwiZXhwIjoxNjUyMzk0NTcyfQ.Iji4hWTV5UDk_UcynK3yVKKLV1lHUAx6yCPLfbCCXiA
+
+
+###
+
+POST http://localhost:8000/api/conversations HTTP/1.1
+content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2MjU3MiwiZXhwIjoxNjUyMzk0NTcyfQ.Iji4hWTV5UDk_UcynK3yVKKLV1lHUAx6yCPLfbCCXiA
+
+{
+    "senderId": "626765557fbdb903c3cbeef3",
+    "recieverId": "626244b6837faab9319d62b3"
+}
+
+###
+GET http://localhost:8000/api/conversations/626244b6837faab9319d62b3
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2MjU3MiwiZXhwIjoxNjUyMzk0NTcyfQ.Iji4hWTV5UDk_UcynK3yVKKLV1lHUAx6yCPLfbCCXiA
