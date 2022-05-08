@@ -1,12 +1,12 @@
 //03/27
-import { GET_ALL_JOBS } from '../actions/types';
+import { GET_ALL_JOBS, GET_MY_APPLIED_JOBS } from '../actions/types';
 const initialState = {
-    jobs: []
+    jobs: [],
+    myAppliedJobs: []
 }
 
 function jobReducer(state= initialState, action){
     //const { type, payload } = action;
-
 
     switch(action.type)
     {
@@ -14,6 +14,11 @@ function jobReducer(state= initialState, action){
             return{
                 ...state,
                 jobs: action.payload
+            }
+        case GET_MY_APPLIED_JOBS:
+            return {
+                ...state,
+                myAppliedJobs: action.payload
             }
         default: return state;
     }

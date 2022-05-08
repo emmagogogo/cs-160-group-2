@@ -1,32 +1,22 @@
 import React, {useEffect, useState} from "react";
-import { useSelector} from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import { Table } from "antd";
 import './appliedJobs.css';
 import api from '../../utils/api';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { getMyAppliedJobs } from '../../actions/job';
 
 
 function AppliedJobs() {
     
-    const [userAppliedJobs, setUserAppliedJobs] = useState([]);
+    // const [userAppliedJobs, setUserAppliedJobs] = useState([]);
+    const dispatch = useDispatch()
+    var userAppliedJobs = useSelector(state => state.job.myAppliedJobs);
 
 
     useEffect(() => {
-        api.get('/jobs/getMyApplications').then((res) => {
-            //console.log(res.data)
-            let newData = res.data.map(jobApplication => {
-                if(jobApplication.job[0] == null) return null
-                return {
-                    title:jobApplication.job[0].title, 
-                    company: jobApplication.job[0].company , 
-                    appliedDate: moment(jobApplication.date).format('MMM-DD-yyyy'), 
-                    status: jobApplication.stage,
-                    id: jobApplication.job[0]._id
-                }
-            })
-            setUserAppliedJobs(newData)
-        }).catch(err => console.log(err))
+        dispatch(getMyAppliedJobs())
     },[]);
 
     const columns = [
