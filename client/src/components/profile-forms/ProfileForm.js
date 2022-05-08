@@ -11,6 +11,10 @@ import ProfilePicChanger from '../profilepic/ProfilePicChanger';
   we can then safely use this to construct our profileData
  */
 const initialState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phoneNumber: '',
   company: '',
   website: '',
   location: '',
@@ -61,6 +65,10 @@ const ProfileForm = ({
   }, [loading, getCurrentProfile, profile]);
 
   const {
+    firstName,
+    lastName,
+    email, 
+    phoneNumber,
     company,
     website,
     location,
@@ -110,6 +118,63 @@ const ProfileForm = ({
             Give us an idea of where you are at in your career
           </small>
         </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            value={firstName}
+            required
+            onChange={onChange}
+          />
+          <small className="form-text">
+            * = required field
+            Please enter your first Name.
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Last Name"
+            name="lastName"
+            value={lastName}
+            required
+            onChange={onChange}
+          />
+          <small className="form-text">
+            * = required field
+            Please enter your last Name.
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email}
+            required
+            onChange={onChange}
+          />
+          <small className="form-text">
+            * = required field
+            Please enter your email and let recruiters reach you soon.
+          </small>
+        </div>
+          <div className="form-group">
+          <input
+            type="text"
+            placeholder="Phone Number"
+            name="phoneNumber"
+            value={phoneNumber}
+            required
+            onChange={onChange}
+          />
+          <small className="form-text">
+            * = required field
+            Please enter your phone number and let recruiters reach you soon.
+          </small>
+        </div>
+
         <div className="form-group">
           <input
             type="text"

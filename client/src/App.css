@@ -648,3 +648,8 @@ form.example button {
 form.example button:hover {
   background: #0b7dda;
 }
+
+.flex{
+  display: flex !important;
+  align-items: center !important;
+}
