@@ -3,23 +3,35 @@ import Conversation from "../conversations/Conversation";
 import Message from "../message/Message";
 import ChatOnline from "../chat-online/ChatOnline";
 import { useState, useContext, useEffect } from "react";
-import { AuthContext} from "../../context/AuthContext";
-import axios from "axios";
+import api from '../../utils/api';
+
 
 const Messenger = () => {
     const [ conversations, setConversations] = useState([]);
-    const { user } = useContext(AuthContext);
+    const userid = JSON.parse(localStorage.getItem('id'));
+
+    useEffect(() => {
+        const getConversations = async () => {
+          try {
+            const res = await api.get("/conversations/" + userid);
+            console.log(res.data)
+            setConversations(res.data);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        getConversations();
+      }, [userid]);
 
     return (
         <section className="container msg-container">
             <div className="chat-menu">
                 <div className="chat-menu-wrapper">
                     <input placeholder="Conversations:" className="chat-menu-input"/>
-                    <Conversation />
-                    <Conversation />
-                    <Conversation />
-                    <Conversation />
-                    <Conversation />
+                    {conversations.map((c) => (
+                        <Conversation conversation={c} currentUser={userid} />
+                    ))}
+    
                 </div>
             </div>
             <div className="chat-box">
