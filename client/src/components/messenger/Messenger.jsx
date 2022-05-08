@@ -23,6 +23,12 @@ const Messenger = () => {
         getConversations();
       }, [userid]);
 
+    // useEffect(() => {
+    //     socket.on('connection', () => {
+    //         console.log(`I'm connected with the back-end`);
+    //     })
+    // }, [])
+
     return (
         <section className="container msg-container">
             <div className="chat-menu">

@@ -1,11 +1,13 @@
 import axios from 'axios';
 import store from '../store';
 import { LOGOUT } from '../actions/types';
+import socketClient  from "socket.io-client";
+
+const SERVER = "http://localhost:8000"
 
 // Create an instance of axios
 const api = axios.create({
-  // baseURL: '/api',
-  baseURL: 'http://localhost:8000/api',
+  baseURL: `${SERVER}/api`,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -28,4 +30,10 @@ api.interceptors.response.use(
   }
 );
 
+const socket = socketClient (SERVER);
+socket.on('connection', () => {
+  console.log(`I'm connected with the back-end`);
+})
+
 export default api;
+export {socket}
