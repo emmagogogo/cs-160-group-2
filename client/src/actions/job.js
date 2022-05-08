@@ -1,6 +1,7 @@
 import api from '../utils/api';
 import{ message } from 'antd';
-import { GET_ALL_JOBS } from './types';
+import { GET_ALL_JOBS, GET_MY_APPLIED_JOBS } from './types';
+import moment from 'moment';
 
 
 
@@ -10,6 +11,31 @@ export const getAllJobs=() => async(dispatch)=>{
         dispatch({
             type: GET_ALL_JOBS,
             payload: res.data
+        });
+    } catch (err) {
+        //types: JOBS_ERROR,
+       // payload: { msg: err.response.statusText, status: err.response.status }
+       console.log(err);     
+    }
+
+}
+
+export const getMyAppliedJobs=() => async(dispatch)=>{
+    try {
+        const res = await api.get('/jobs/getMyApplications');
+        let newData = res.data.map(jobApplication => {
+            if(jobApplication.job[0] == null) return null
+            return {
+                title:jobApplication.job[0].title, 
+                company: jobApplication.job[0].company , 
+                appliedDate: moment(jobApplication.date).format('MMM-DD-yyyy'), 
+                status: jobApplication.stage,
+                id: jobApplication.job[0]._id
+            }
+        })
+        dispatch({
+            type: GET_MY_APPLIED_JOBS,
+            payload: newData
         });
     } catch (err) {
         //types: JOBS_ERROR,
