@@ -10,6 +10,7 @@ const setAuthToken = (token) => {
     delete api.defaults.headers.common['x-auth-token'];
     localStorage.removeItem('token');
     localStorage.removeItem('type');
+    localStorage.removeItem('id');
   }
 };
 

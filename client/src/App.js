@@ -17,7 +17,10 @@ import Jobs from './components/jobs/Jobs.js'
 import JobSearch from './components/job-search/JobSearch'
 import JobDetails from './components/jobs/jobDetails';
 //import Jobs from './components/jobs/Jobs.jsx'
-import PostJob from './components/job-post/PostJob.js'
+import PostJob from './components/job-post/PostJob.js';
+import EditJob from './components/job-post/EditJob.js';
+import PostedJobs from './components/postedJobs/PostedJobs';
+import AppliedJobs from './components/appliedJobs/AppliedJobs';
 
 import NotFound from './components/layout/NotFound';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -32,6 +35,7 @@ import setAuthToken from './utils/setAuthToken';
 import './App.css';
 import messenger from './components/messenger/Messenger';
 import { getAllJobs } from './actions/job';
+
 
 
 const App = () => {
@@ -101,6 +105,12 @@ const App = () => {
           <Route path="/*" element={<NotFound />} />
           <Route path="jobs/:id" element={<JobDetails />} />
           <Route path="job-search" element={<JobSearch />} />
+
+          <Route path="posted" element={<PostedJobs />} />
+          <Route path="applied" element={<AppliedJobs />} />
+          
+          <Route path="editjob/:id" element={<EditJob />} />
+
         </Routes>
       </Router>
     </Provider>

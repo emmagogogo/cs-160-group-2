@@ -7,6 +7,8 @@ const User = require('../../models/User');
 const Profile = require('../../models/Profile')
 const JobApplication = require('../../models/JobApplication')
 const checkObjectId = require('../../middleware/checkObjectId');
+const moment = require("moment");
+const ObjectID = require('mongodb').ObjectID
 
 
 router.get("/getalljobs", async(req, res) => {
@@ -56,6 +58,78 @@ router.post("/postjob", auth, async(req, res) => {
 
 });
 
+// @route    GET api/jobs/getMyApplications
+// @desc     Get job applications from a user
+// @access   Private
+router.get('/getMyApplications', auth, async(req, res) => {
+  try{
+    const jobApplications = await JobApplication.aggregate([{$lookup: {
+      from: 'jobs',
+      localField: 'job.id',
+      foreignField: '_id',
+      as: 'job'
+     }}, {$match: {
+      user: ObjectID(req.user.id)
+     }}, {$unset: 
+       ["job.applications"]
+     }])
+  
+     res.json(jobApplications);
+
+  } catch(err){
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+  }
+),
+
+// @route    GET api/:jobId/getApplications
+// @desc     Get job applications for a job
+// @access   Private
+router.get('/:id/getCandidates', auth, checkObjectId('id'), async(req, res) => {
+  try{
+
+      const job = await Job.findById(req.params.id);
+  
+      if (!job) {
+        return res.status(404).json({ msg: 'Job not found' });
+      }
+
+    const jobApplications = await JobApplication.aggregate(
+      [
+        {
+          '$match': {
+            'job.id': ObjectID(req.params.id)
+          }
+        }, {
+          '$lookup': {
+            'from': 'jobs', 
+            'localField': 'job.id', 
+            'foreignField': '_id', 
+            'as': 'jobDetails'
+          }
+        }, {
+          '$lookup': {
+            'from': 'profiles', 
+            'localField': 'user', 
+            'foreignField': 'user', 
+            'as': 'profileDetails'
+          }
+        }
+      ]
+     )
+  
+     res.json(jobApplications);
+
+  } catch(err){
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+  }
+),
+
 // @route    GET api/jobs/:id
 // @desc     Get post by ID
 // @access   Private
@@ -75,8 +149,8 @@ router.get('/:id', auth, checkObjectId('id'), async (req, res) => {
     }
   });
 
-// @route    DELETE api/posts/:id
-// @desc     Delete a post
+// @route    DELETE api/jobs/:id
+// @desc     Delete a job
 // @access   Private
 router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
     try {
@@ -93,7 +167,7 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
   
       await job.remove();
   
-      res.json({ msg: 'Post removed' });
+      res.json({ msg: 'Job removed' });
     } catch (err) {
       console.error(err.message);
   
@@ -127,18 +201,55 @@ router.post('/:id/apply', [auth, checkObjectId('id')], async (req, res) => {
 
     // if(!profile.hasOwnProperty(applications)) profile.applications = []
     // profile.applications.push(newApplication.id)
-    
-    job.applications.push(newApplication.id)
+    const appliedCandidate = {
+      userid : req.user.id,
+      appliedDate : moment().format('MMM DD yyyy')
+  }
+    job.applications.push(appliedCandidate);
     // await profile.save()
-    await job.save()
+    await job.save();
 
+    //res.json({ msg: 'Applied successfully!' });
 
-    res.json({ msg: 'Applied successfully!' });
+    const user = await User.findById(req.user.id);
+    const appliedJob = {
+        jobid: job.id,
+        appliedDate: moment().format('MMM-DD-yyyy')
+    }
+    user.appliedJobs.push(appliedJob);
+    await user.save();
+    res.send('Job Applied successfully!');
+
   } catch (err) {
     console.error(err.message);
 
     res.status(500).send('Server Error');
   }
 });
+
+
+// @route    POST api/jobs/editjob/:id
+// @desc     edit a posted job
+// @access   Private
+router.post('/editjob/:id', [auth, checkObjectId('id')], async(req, res) => {
+  try {
+   
+    const job = await Job.findById(req.params.id);
+  
+    if (!job) {
+      return res.status(404).json({ msg: 'Job not found' });
+    }
+  
+    const updatedJob = await Job.findOneAndUpdate({_id: req.params.id}, req.body);
+    res.send('Job updated successfully');
+  
+  } catch (error) {
+    return res.status(400).json({ error});
+  }
+  
+  
+ });
+ 
+
 
 module.exports = router;
