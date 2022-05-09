@@ -3,7 +3,7 @@ import { Link, useMatch, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
-import ProfilePicChanger from '../profilepic/ProfilePicChanger';
+//import ProfilePicChanger from '../profilepic/ProfilePicChanger';
 
 /*
   NOTE: declare initialState outside of component
@@ -98,7 +98,7 @@ const ProfileForm = ({
       </h1>
       <p className="lead">
         {/* <i className="fas fa-user" /> */}
-        <ProfilePicChanger />
+        {/* <ProfilePicChanger /> */}
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={onSubmit}>
