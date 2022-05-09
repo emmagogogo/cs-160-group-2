@@ -18,7 +18,7 @@ function JobSearch() {
     const [filtered, setfiltered] = useState(false);
 
     useEffect(() =>{
-        api.get(`/jobs/search?searchQuery="java"}`).then((res) => {
+        api.get(`/jobs/search?searchQuery="teset"}`).then((res) => {
              console.log(res.data)
              setFilterJobs(res.data)
              
