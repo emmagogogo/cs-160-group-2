@@ -43,7 +43,7 @@ const Dashboard = ({
         </>
       ) : (
         <>
-          <p>You have not yet setup a profile, please add some info.</p>
+          <p>If you want to apply for a job, please update your profile. Otherwise, you profile won't seen by the recruiters.</p>
           <Link to="/create-profile" className="btn btn-primary my-1">
             Update Profile
           </Link>
