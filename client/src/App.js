@@ -101,7 +101,7 @@ const App = () => {
           <Route path="posts" element={<PrivateRoute component={Posts} />} />
           <Route path="posts/:id" element={<PrivateRoute component={Post} />} />
           <Route path="jobs" element={<Jobs />} />
-          <Route path="job-post" element={<PostJob />} />
+          <Route path="postjob" element={<PostJob />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="jobs/:id" element={<JobDetails />} />
           <Route path="job-search" element={<JobSearch />} />
