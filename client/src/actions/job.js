@@ -1,5 +1,6 @@
 import api from '../utils/api';
 import{ message } from 'antd';
+import { GET_ALL_JOBS, JOBS_ERROR, SEARCHED_JOBS } from './types';
 import { GET_ALL_JOBS, GET_MY_APPLIED_JOBS } from './types';
 import moment from 'moment';
 
@@ -79,6 +80,21 @@ export const postjob=(values) => async (dispatch) =>{
 
 }
 
+<<<<<<< HEAD
+export const searchForJobs=(values) => async (dispatch) => {
+    dispatch({type: 'LOADING', payload: true}) 
+    try {
+        const res = await api.get('/jobs/search?searchQuery=java', values);
+        dispatch({
+            type: SEARCHED_JOBS,
+            payload: res.data
+        });
+        return res.data
+    } catch (err) {
+        console.log(err);     
+     }
+}
+=======
 export const editJob=(job, values) => async (dispatch) =>{
  
   
@@ -119,3 +135,4 @@ export const editJob=(job, values) => async (dispatch) =>{
 
 }
 
+>>>>>>> 4ddc162582813caa1645c17c4173375d63342cb2

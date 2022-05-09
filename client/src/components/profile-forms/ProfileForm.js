@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useMatch, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile, getCurrentProfile } from '../../actions/profile';
+import { postJob, getCurrentProfile } from '../../actions/profile';
 import ProfilePicChanger from '../profilepic/ProfilePicChanger';
 
 /*
@@ -336,6 +336,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+export default connect(mapStateToProps, { postJob, getCurrentProfile })(
   ProfileForm
 );
