@@ -44,7 +44,7 @@ function PostedJobs(){
         render : (text, data)=>{
             return <div className="flex" key={data.completeJobData._id}> 
                 <EditOutlined onClick={()=>{navigate(`/editjob/${data.completeJobData._id}`);}}/>
-                <OrderedListOutlined style={{fontSize:20}} onClick={() => {showModal(job);}}/>
+                <OrderedListOutlined style={{fontSize:20}} onClick={() => {showModal(data.completeJobData);}}/>
                 <DeleteOutlined style={{fontSize:20}} onClick={()=> popup(data.completeJobData._id)}/>
             </div>
         }
