@@ -44,7 +44,7 @@ function PostedJobs(){
         render : (text, data)=>{
             return <div className="flex" key={data.completeJobData._id}> 
                 <EditOutlined onClick={()=>{navigate(`/editjob/${data.completeJobData._id}`);}}/>
-                <OrderedListOutlined style={{fontSize:20}} onClick={() => {showModal(job);}}/>
+                <OrderedListOutlined style={{fontSize:20}} onClick={() => {showModal(data.completeJobData);}}/>
                 <DeleteOutlined style={{fontSize:20}} onClick={()=> popup(data.completeJobData._id)}/>
             </div>
         }
@@ -86,7 +86,7 @@ function PostedJobs(){
     const showModal = (job) => {
         setIsModalVisible(true);
         setSelectedJob(job);
-        //console.log(job);
+        console.log(job);
     };
     console.log(selectedJob);
 
@@ -130,14 +130,16 @@ function PostedJobs(){
         ];
         
         const [candidates, setCandidates] = useState([]);
-
+        console.log(selectedJob);
         useEffect(() => {
             api.get(`/jobs/${selectedJob._id}/getCandidates`).then((res) => {
                 console.log(res.data)
                  let newData = res.data.map(candidates => {
-                     if(candidates.profileDetails[0] == null) return null;
-                     const user = candidates.profileDetails[0];
-                      //console.log(user.phoneNumber);
+                     if(candidates.profileDetails[0] === null) return '';
+                        const user = candidates.profileDetails[0];
+                        console.log(user);
+                     
+                     
                     //  console.log(candidates);
                     // console.log(candidates);
                      return {
@@ -148,6 +150,7 @@ function PostedJobs(){
                         appliedDate: moment(candidates.date).format('MMM-DD-yyyy'),
                         status: candidates.stage,
                     }
+                     
                  })
                  console.log(newData);
                   setCandidates(newData);
