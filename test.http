@@ -69,7 +69,6 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0Y
 
 
 ###
-
 POST http://localhost:8000/api/conversations HTTP/1.1
 content-type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2MjU3MiwiZXhwIjoxNjUyMzk0NTcyfQ.Iji4hWTV5UDk_UcynK3yVKKLV1lHUAx6yCPLfbCCXiA
@@ -82,3 +81,44 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0Y
 ###
 GET http://localhost:8000/api/conversations/626244b6837faab9319d62b3
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2MjU3MiwiZXhwIjoxNjUyMzk0NTcyfQ.Iji4hWTV5UDk_UcynK3yVKKLV1lHUAx6yCPLfbCCXiA
+
+###
+POST http://localhost:8000/api/messages
+content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2MjU3MiwiZXhwIjoxNjUyMzk0NTcyfQ.Iji4hWTV5UDk_UcynK3yVKKLV1lHUAx6yCPLfbCCXiA
+
+{
+    "conversationId": "6276f918f6697f26c3779da3",
+    "sender": "626244b6837faab9319d62b3",
+    "text": "hey test!"
+}
+
+###
+POST http://localhost:8000/api/messages
+content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2MjU3MiwiZXhwIjoxNjUyMzk0NTcyfQ.Iji4hWTV5UDk_UcynK3yVKKLV1lHUAx6yCPLfbCCXiA
+
+{
+    "conversationId": "6276f918f6697f26c3779da3",
+    "sender": "6262446f837faab9319d629f",
+    "text": "hey reply test!"
+}
+
+###
+POST http://localhost:8000/api/messages
+content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2MjU3MiwiZXhwIjoxNjUyMzk0NTcyfQ.Iji4hWTV5UDk_UcynK3yVKKLV1lHUAx6yCPLfbCCXiA
+
+{
+    "conversationId": "6276fb4df6697f26c3779da6",
+    "sender": "626244b6837faab9319d62b3",
+    "text": "hey test2!"
+}
+
+###
+GET http://localhost:8000/api/messages/6276f918f6697f26c3779da3
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2Njk1MCwiZXhwIjoxNjUyMzk4OTUwfQ.vS8H4eMNvdh8K-1FPBhTb6g5NS_eoor2SN4u_TaeLrQ
+
+###
+GET http://localhost:8000/api/messages/6276fb4df6697f26c3779da6
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI2MjQ0YjY4MzdmYWFiOTMxOWQ2MmIzIn0sImlhdCI6MTY1MTk2Njk1MCwiZXhwIjoxNjUyMzk4OTUwfQ.vS8H4eMNvdh8K-1FPBhTb6g5NS_eoor2SN4u_TaeLrQ
