@@ -11,6 +11,7 @@ const checkObjectId = require('../../middleware/checkObjectId');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
+const ObjectId = require('mongoose').Types.ObjectId
 
 // @route    GET api/profile/me
 // @desc     Get current users profile
@@ -31,6 +32,41 @@ router.get('/me', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// @route    POST api/profile/picture
+// @desc     Create or update user profile
+// @access   Private
+router.post(
+  '/picture',
+  auth,
+  check('profileImg', "profileImg is required").notEmpty(),
+  async(req, res) => {
+    try{
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+    const {profileImg} = req.body
+    
+    let result = await Profile.findOneAndUpdate(
+      { user: ObjectId(req.user.id) },
+      { $set: {profileImg: profileImg} },
+      { new: true, upsert: true, setDefaultsOnInsert: true }
+    );
+
+    return res.json(result)
+
+    }
+    catch(err){
+      console.log(err);
+      return res.status(500).send('Server Error');
+    }
+    
+
+
+  }
+)
 
 // @route    POST api/profile
 // @desc     Create or update user profile

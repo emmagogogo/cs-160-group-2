@@ -140,6 +140,11 @@ const ProfileSchema = new mongoose.Schema({
   applications : {
     type : [],
   },
+  profileImg:
+  {
+      data: Buffer,
+      contentType: String
+  }
   
 });
 

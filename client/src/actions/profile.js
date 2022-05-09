@@ -231,3 +231,30 @@ export const deleteAccount = () => async (dispatch) => {
     }
   }
 };
+
+// add profile picture
+export const addPhoto = (formData) => async (dispatch) => {
+  try {
+    console.log("addphotocalled")
+    const res = await api.post('/profile', formData);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Photo Added', 'success'));
+
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
