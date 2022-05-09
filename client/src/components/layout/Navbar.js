@@ -25,9 +25,9 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       <li>
       <Link to="/applied">Applied</Link>
       </li>
-      <li>
+      {/* <li>
       <Link to="/messenger">Messages</Link>
-      </li>
+      </li> */}
       <li>
         <Link to="/posts">Blogs</Link>
       </li>
@@ -60,9 +60,9 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       <li>
       <Link to="/posted">Posted</Link>
       </li>
-      <li>
+      {/* <li>
       <Link to="/messenger">Messages</Link>
-      </li>
+      </li> */}
       <li>
         <Link to="/posts">Blogs</Link>
       </li>
