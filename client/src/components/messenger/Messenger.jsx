@@ -84,7 +84,7 @@ const Messenger = () => {
 
     useEffect(() => {
         api.get("/conversations").then((res) => {
-            let data = res.data.map((conv) => { return { ...conv, id: conv._id, otherUser: conv.userInfo.filter((u) => u != user)[0] } })
+            let data = res.data.map((conv) => { return { ...conv, id: conv._id, otherUser: conv.userInfo.filter((u) => u._id != user)[0] } })
             setConversations(data)
         })
 
@@ -115,13 +115,13 @@ const Messenger = () => {
                     </div>
                 </div>
             </div>
-            <div className="chat-online">
+            {/* <div className="chat-online">
                 <div className="chat-online-wrapper">
                     <ChatOnline />
                     <ChatOnline />
                     <ChatOnline />
                 </div>
-            </div>
+            </div> */}
         </section>
     )
 };

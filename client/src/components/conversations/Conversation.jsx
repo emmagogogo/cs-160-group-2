@@ -8,7 +8,7 @@ const Conversation = (props) => {
     return (
         <div className="conversation" onClick={click}>
             <img className="conversation-img" 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtej8A8iI5h-E2JkZylE9Qm3aOZCQzXxhtrA&usqp=CAU" 
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
                 alt="" 
             />
             <span className="conversation-text">{props.name}</span>
