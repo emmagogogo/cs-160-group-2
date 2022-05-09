@@ -88,8 +88,8 @@ export const getGithubRepos = (username) => async (dispatch) => {
   }
 };
 
-// Create or update profile
-export const createProfile =
+// Post a job
+export const postJob =
   (formData, navigate, edit = false) =>
   async (dispatch) => {
     try {
@@ -101,7 +101,7 @@ export const createProfile =
       });
 
       dispatch(
-        setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success')
+        setAlert(edit ? 'Job posted' : 'success')
       );
 
       if (!edit) {

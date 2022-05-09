@@ -11,13 +11,20 @@ function JobSearch() {
     var{jobs} = useSelector(state=>state.job);
     //const dispatch = useDispatch();
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> Tim
         // update the filtered array using hooks
     const [filterdJobs, setFilterJobs] = useState(jobs);
     // used to differentiate between the filtered and not filtered jobs display 
     const [filtered, setfiltered] = useState(false);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> Tim
     useEffect(() =>{
         api.get(`/jobs/search?searchQuery="teset"}`).then((res) => {
              console.log(res.data)
