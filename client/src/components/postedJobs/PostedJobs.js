@@ -135,11 +135,12 @@ function PostedJobs(){
             api.get(`/jobs/${selectedJob._id}/getCandidates`).then((res) => {
                 console.log(res.data)
                  let newData = res.data.map(candidates => {
-                     if(candidates.profileDetails[0] == null) return null;
-                     const user = candidates.profileDetails[0];
-                      //console.log(user.phoneNumber);
-                    //  console.log(candidates);
-                    // console.log(candidates);
+                     if(candidates.profileDetails[0] == null) return "";
+                     else {
+                        const user = candidates.profileDetails[0];
+                        //console.log(user.phoneNumber);
+                        //  console.log(candidates);
+                        // console.log(candidates);
                      return {
                         candidateId: user.user, 
                         fullName: user.firstName + " " + user.lastName,
@@ -148,6 +149,8 @@ function PostedJobs(){
                         appliedDate: moment(candidates.date).format('MMM-DD-yyyy'),
                         status: candidates.stage,
                     }
+                     }
+                     
                  })
                  console.log(newData);
                   setCandidates(newData);
