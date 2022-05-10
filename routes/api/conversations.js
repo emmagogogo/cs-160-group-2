@@ -22,7 +22,7 @@ router.post("/", auth, check("receiverId", "receiverId must not be empty").notEm
     });
 
 
-    if (conversation) throw("Conversation already exists, not created!")
+    if (conversation) return res.status(200).json("Conversation already exists, not created!")
 
     const newConversation = new Conversation({
       members: [ObjectId(userId), ObjectId(req.body.recieverId)]
