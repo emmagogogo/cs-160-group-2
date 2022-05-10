@@ -4,7 +4,7 @@ const Conversation = (props) => {
     let click = () => {
         props.onClick(props.id);
     }
-
+    console.log(props.name);
     return (
         <div className="conversation" onClick={click}>
             <img className="conversation-img" 
