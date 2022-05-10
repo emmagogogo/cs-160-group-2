@@ -1,5 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://cs157c:00bgny2wIKlbCeKi@cluster0.83tw7.mongodb.net/cs160",
-    "jwtSecret": "secret",
-    "githubToken": "<yoursecrectaccesstoken>"
-  }
