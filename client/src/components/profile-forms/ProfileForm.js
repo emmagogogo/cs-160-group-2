@@ -112,6 +112,7 @@ const ProfileForm = ({
             <option value="Student or Learning">Student or Learning</option>
             <option value="Instructor">Instructor or Teacher</option>
             <option value="Intern">Intern</option>
+            <option value="Recruiter">Recruiter</option>
             <option value="Other">Other</option>
           </select>
           <small className="form-text">

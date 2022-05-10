@@ -25,6 +25,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const GET_ALL_JOBS = 'GET_ALL_JOBS';
 export const JOBS_ERROR = 'JOBS_ERROR';
+export const SEARCHED_JOBS = 'SEARCHED_JOBS';
 export const GET_MY_APPLIED_JOBS = 'GET_MY_APPLIED_JOBS'
 
 
