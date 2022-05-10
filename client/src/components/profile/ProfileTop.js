@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {MessageOutlined} from '@ant-design/icons';
+//import { Link } from 'react-router-dom';
+import{ useNavigate } from "react-router-dom";
+import api from '../../utils/api';
 
 const ProfileTop = ({
   profile: {
@@ -8,9 +12,13 @@ const ProfileTop = ({
     location,
     website,
     social,
-    user: { name, avatar }
+    user: { name, avatar, _id }
   }
+
+  
 }) => {
+  const navigate = useNavigate();
+  console.log(_id);
   return (
     <div className="profile-top bg-primary p-2">
       <img className="round-img my-1" src={avatar} alt="" />
@@ -39,7 +47,10 @@ const ProfileTop = ({
                 </a>
               ))
           : null}
-      </div>
+        </div>
+        <MessageOutlined style={{ fontSize: '250%', color: 'white'}} onClick={()=>{
+          api.post(`/conversations`, {receiverId:_id}).then((response) => {navigate("/messenger")
+        })}}/>
     </div>
   );
 };
