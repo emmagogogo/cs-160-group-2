@@ -18,14 +18,14 @@ router.post("/", auth, check("receiverId", "receiverId must not be empty").notEm
   try {
 
     const conversation = await Conversation.findOne({
-      members: { $all: [userId, req.body.recieverId] },
+      members: { $all: [ObjectId(userId), ObjectId(req.body.receiverId)] },
     });
 
 
     if (conversation) return res.status(200).json("Conversation already exists, not created!")
 
     const newConversation = new Conversation({
-      members: [ObjectId(userId), ObjectId(req.body.recieverId)]
+      members: [ObjectId(userId), ObjectId(req.body.receiverId)]
     });
     const savedConversation = await newConversation.save();
     res.status(200).json(savedConversation);
