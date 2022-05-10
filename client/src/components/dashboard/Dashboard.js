@@ -26,7 +26,7 @@ const Dashboard = ({
     <section className="container">
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
-        <ProfilePicChanger margin={0}/>
+        <ProfilePicChanger base64pic={profile ? profile.profileImg : null} margin={0}/>
         <span id='user-profile-name'>{user && user.name}</span>
       </p>
       {profile !== null ? (

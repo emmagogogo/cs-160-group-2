@@ -8,9 +8,7 @@ import { logout } from '../../actions/auth';
 
 const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   const userType = JSON.parse(localStorage.getItem('type'));
-  // const user = JSON.parse(localStorage.getItem('user'));
-  // const userType = user.userType;
-  console.log(userType);
+  //console.log(userType);
   const authLinksApplicant = (
     <ul>
       <li>

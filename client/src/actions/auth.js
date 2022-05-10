@@ -25,7 +25,6 @@ export const loadUser = () => async (dispatch) => {
     const id = res.data._id;
     localStorage.setItem('type', JSON.stringify(userType));
     localStorage.setItem('id', JSON.stringify(res.data._id));
-
     dispatch({
       type: USER_LOADED,
       payload: res.data

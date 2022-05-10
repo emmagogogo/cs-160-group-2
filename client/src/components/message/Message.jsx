@@ -1,21 +1,22 @@
 import "./Message.css"
+import moment from 'moment';
 
-const Message = ({own}) => {
+const Message = ({own, message, time}) => {
     return (
         <div className={own ? "message own" : "message"}>
             <div className="message-top">
                 
                 <img className={own ? "message-img hidden" : "message-img"} 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtej8A8iI5h-E2JkZylE9Qm3aOZCQzXxhtrA&usqp=CAU" 
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
                     alt=""
                 />
-                <p className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p className="message-text">{message}</p>
                 <img className={own ? "message-img" : "message-img hidden"}
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtej8A8iI5h-E2JkZylE9Qm3aOZCQzXxhtrA&usqp=CAU" 
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
                     alt="" 
                 />
             </div>
-            <div className="message-bottom">1 hour ago</div>
+            <div className="message-bottom">{moment(time).fromNow()}</div>
         </div>
     )
 };

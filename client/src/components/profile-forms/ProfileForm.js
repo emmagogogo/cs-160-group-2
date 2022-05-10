@@ -98,7 +98,7 @@ const ProfileForm = ({
       </h1>
       <p className="lead">
         {/* <i className="fas fa-user" /> */}
-        <ProfilePicChanger />
+        <ProfilePicChanger base64pic={profile ? profile.profileImg : null}/>
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={onSubmit}>
