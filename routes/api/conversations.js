@@ -3,49 +3,62 @@ const router = express.Router();
 const Conversation = require('../../models/Conversation');
 const auth = require('../../middleware/auth')
 const ObjectId = require('mongoose').Types.ObjectId
+const { check, validationResult } = require('express-validator');
 
 // new conv 
-router.post("/", auth, async (req, res)=>{
+router.post("/", auth, check("receiverId", "receiverId must not be empty").notEmpty(), async (req, res) => {
 
-    let userId = req.user.id
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
-    const newConversation = new Conversation({
-        members: [userId, req.body.recieverId]
+  let userId = req.user.id
+
+  try {
+
+    const conversation = await Conversation.findOne({
+      members: { $all: [userId, req.body.recieverId] },
     });
 
-    try{
-        const savedConversation = await newConversation.save(); 
-        res.status(200).json(savedConversation);
-    } catch(error) {
-        res.status(500).json(error);
-    }
+
+    if (conversation) throw("Conversation already exists, not created!")
+
+    const newConversation = new Conversation({
+      members: [ObjectId(userId), ObjectId(req.body.recieverId)]
+    });
+    const savedConversation = await newConversation.save();
+    res.status(200).json(savedConversation);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 })
 
 
 // get conv
-router.get("/", auth, async (req, res)=>{
-    try{
-        let userId = req.user.id
+router.get("/", auth, async (req, res) => {
+  try {
+    let userId = req.user.id
 
-        const conversation = await Conversation.aggregate([
-          {
-            '$match': {
-              'members': ObjectId(userId)
-            }
-          }, {
-            '$lookup': {
-              'from': 'users', 
-              'localField': 'members', 
-              'foreignField': '_id', 
-              'as': 'userInfo'
-            }
-          }
-        ]);
-        res.status(200).json(conversation);
-    } catch (error) {
-      console.log(error)
-        res.status(500).json(error);
-    }
+    const conversation = await Conversation.aggregate([
+      {
+        '$match': {
+          'members': ObjectId(userId)
+        }
+      }, {
+        '$lookup': {
+          'from': 'users',
+          'localField': 'members',
+          'foreignField': '_id',
+          'as': 'userInfo'
+        }
+      }
+    ]);
+    res.status(200).json(conversation);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error);
+  }
 });
 
 // get conv includes two userId
