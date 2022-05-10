@@ -115,13 +115,10 @@ const Messenger = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="chat-online">
+            { <div className="chat-online">
                 <div className="chat-online-wrapper">
-                    <ChatOnline />
-                    <ChatOnline />
-                    <ChatOnline />
                 </div>
-            </div> */}
+            </div> }
         </section>
     )
 };
