@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import { searchForJobs } from '../../actions/job';
 import {Row, Col} from 'antd';
 import "../jobs/Jobs.css";
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import moment from 'moment';
 import api from '../../utils/api';
 
@@ -17,15 +17,15 @@ function JobSearch() {
     // used to differentiate between the filtered and not filtered jobs display 
     const [filtered, setfiltered] = useState(false);
 
-
-
+    let [searchParams, setSearchParams] = useSearchParams();
+    
     useEffect(() =>{
-        api.get(`/jobs/search?searchQuery="teset"}`).then((res) => {
+        api.get(`/jobs/search?searchQuery=` + searchParams.get("search")).then((res) => {
              console.log(res.data)
              setFilterJobs(res.data)
              
         })
-    })
+    }, [])
 
     // select the elements to be used in filtering
     let PartTime = document.getElementById('filter-PartTime');
